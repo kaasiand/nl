@@ -19,6 +19,8 @@ function formatLine(str) {
         }
         else if (str[i] == ']') { output = output.replace(/\]/,    "</b>"); }
         else if (str[i] == '}') { output = output.replace(/\}/, "</span>"); }
+        else if (str[i] == '|') { output = output.replace(/\|/,    "<br>"); }
+        else if (str[i] == 'Ø') { output = output.replace(/Ø/,"&NoBreak;"); }
     }
     return output;
 }

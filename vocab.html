@@ -59,15 +59,17 @@ ul {
     width: 100%;
     font-size: 1.5rem;
     border-collapse: collapse;
+    margin: 10px 0;
 
     & th {
-        padding: 15px 0 !important;
+        padding: 15px 0 15px !important;
     }
     
     & td,th {
         vertical-align: center;
         padding: 2px;
-            line-height: 1.5rem;
+        line-height: calc(1.5rem * 0.9);
+
         >div {
             padding: 4px 0;
             vertical-align: baseline;
@@ -91,7 +93,10 @@ ul {
         border-bottom: 10px solid transparent;
         background-color: #ca56;
     }
-    td.maincol { background-color: #ca54; }
+    td.maincol {
+        background-color: #ca54; 
+        line-height: calc(2.0rem * 0.85);
+    }
 }
 html {
     font-size: 12pt;
@@ -167,7 +172,8 @@ wordlist = [
 { pt: ["o","nar[i]z","","narizinho","","narigão"],      nl: ["de","n[eu]s","","neuzen","","neusje"] },
 
 { pt: ["a","f[ɔ]rma","","forminha","","formona"],      nl: ["de","vorm","","vormen","","vormpje"], section: true },
-{ pt: ["o","quadr[a]do","","quadradinho","","quadradão"],     nl: ["het<br>de","v[ie]r·kant<br>cirkel","","vierkanten","","vierkantje"] },
+{ pt: ["o|a","c[í]rculo|r[ɔ]da","","circulinho|rodinha","","circulão|rodona"],  nl: ["de|de|het","c[i]r·kel|kr[i]ng|r[o]ndje","","cirkels|kringen|rondjes","","cirkeltje|kringetje|Ø"] },
+{ pt: ["o","quadr[a]do","","quadradinho","","quadradão"],     nl: ["het","v[ie]r·kant","","vierkanten","","vierkantje"] },
 ];
 
 </script>
