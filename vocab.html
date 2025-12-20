@@ -5,9 +5,13 @@
 
 
 @media screen and (orientation: portrait) {
-    #translation :is(td,th):is(:nth-child(1),:nth-child(2)) {
+    html {
+        font-size: 18pt !important;
+    }
+    #translation tr>.pt:not(.maincol) {
         display: none;
     }
+    b { font-weight: 600 }
 
 }
 
@@ -49,12 +53,6 @@ ul {
         }
     }
 }
-ul {
-}
-td {
-    vertical-align: center;
-    padding: 3px 20px 3px;
-}
 th {
     padding: 0px 10px 0 20px;
 
@@ -68,21 +66,11 @@ th {
 td[colspan] {
     text-align: center;
 }
-td:not([data-pre]):nth-child(1), td:not([data-pre]):nth-child(2) {
-    padding-left: 25px;
-}
-td[data-pre] {
-    padding-left: 10px;
-    &::before {
-        content: attr(data-pre) " ";
-        color: #0006;
-    }
-}
 th,td {
-    transition: transform .2s, max-width .2s, font-size .2s, padding-left .2s, padding-right .2s;
-    transform: scaleX(1);
+    vertical-align: baseline;
+    padding: 2px;
+    line-height: calc(1.5rem * 1.3);
     max-width: 20vw;
-    font-size: 2rem;
     & li::marker {
         content: attr(data-pre) " ";
         font-size: 1.2rem;
@@ -94,29 +82,30 @@ th,td {
 }
 
 #translation {
-width: 100%;
+    width: 100%;
+    font-size: 1.5rem;
     border-collapse: collapse;
 
-    td,th { width: 1px };
+    & td,th { width: 1px };
 
-    & tr>:nth-child(1) { transform-origin: 200%; }
-    & tr>:nth-child(2) { transform-origin: right; }
-    & tr>:nth-child(5) { transform-origin: left; }
-    & tr>:nth-child(6) { transform-origin: -100%; }
-    & tr>:not(:nth-child(3)):not(:nth-child(4)) {
-        font-size: 1.5rem;
+    .maincol:not(.article) {
+        font-size: 130%;
     }
-    & tr.section {
-        border-top: 15px solid transparent;
+    .maincol.article {
+        padding-left: 10px;
+    }
+    .article {
+        font-size: 80%;
+        padding-right: 5px;
+        color: #0006;
+        text-align: right;
+    }
+    .section {
+        border-top: 12px solid transparent;
         border-bottom: 10px solid transparent;
-
-        &>:not(:nth-child(3)):not(:nth-child(4)) {
-            background-color: #ca56;
-        }
-        &>:nth-child(3), &>:nth-child(4) {
-            background-color: #ca5a;
-        }
+        background-color: #ca56;
     }
+    td.maincol { background-color: #ca56; }
 }
 html {
     font-size: 12pt;
@@ -133,70 +122,79 @@ html {
 s { opacity: 0.5; text-decoration: none; }
 .transp { opacity: 0.5 }
 
-.collapseleft {
-    & :is(td,th):is(:nth-child(1),:nth-child(2)) {
-        transform: scaleX(1);
-        max-width: 0px !important;
-        font-size: 0rem !important;
-        padding-left: 0px !important;
-        padding-right: 0px !important;
-    }
-}
-.collapseright {
-    & :is(td,th):is(:nth-child(5),:nth-child(6)) {
-        transform: scaleX(0);
-        max-width: 0px !important;
-        font-size: 0rem !important;
-        padding-left: 0px !important;
-        padding-right: 0px !important;
-    }
-}
-
-#table2 {
-    display: flex;
-    flex-direction: column;
-    
-}
 
 </style>
 <script src="format.js"></script>
 <script>
 function init() {
+    populateTable();
     formatElement("translation");
 }
+
+function populateTable() {
+    for (let i = 0; i < wordlist.length; i++) {
+        let tr = document.createElement("tr");
+
+        let td_pt_dim_art = document.createElement("td"), td_pt_dim = document.createElement("td");
+        let td_pt_aug_art = document.createElement("td"), td_pt_aug = document.createElement("td");
+        let td_pt_art     = document.createElement("td"), td_pt     = document.createElement("td");
+        let td_nl_dim_art = document.createElement("td"), td_nl_dim = document.createElement("td");
+        let td_nl_pl_art  = document.createElement("td"), td_nl_pl  = document.createElement("td");
+        let td_nl_art     = document.createElement("td"), td_nl     = document.createElement("td");
+        tr.appendChild(td_pt_dim_art); tr.appendChild(td_pt_dim); tr.appendChild(td_pt_aug_art); tr.appendChild(td_pt_aug);
+        tr.appendChild(td_pt_art);     tr.appendChild(td_pt);     tr.appendChild(td_nl_art);     tr.appendChild(td_nl);
+        tr.appendChild(td_nl_pl_art);  tr.appendChild(td_nl_pl);  tr.appendChild(td_nl_dim_art); tr.appendChild(td_nl_dim);
+
+        if ("section" in wordlist[i]) tr.classList.add("section");
+        td_pt_dim_art.classList.add("article","pt");       td_pt_aug_art.classList.add("article","pt");
+        td_pt_dim    .classList.add(          "pt");       td_pt_aug    .classList.add(          "pt");
+        td_pt_art.classList.add("article","maincol","pt"); td_nl_art.classList.add("article","maincol","nl");
+        td_pt        .classList.add("maincol","pt");       td_nl        .classList.add("maincol","nl");
+        td_nl_dim_art.classList.add("article","nl");       td_nl_pl_art .classList.add("article","nl");
+        td_nl_dim    .classList.add(          "nl");       td_nl_pl     .classList.add(          "nl");
+
+        td_pt_art    .innerHTML = formatLine(wordlist[i].pt[0]);
+        td_pt        .innerHTML = formatLine(wordlist[i].pt[1]);
+        td_pt_dim_art.innerHTML = formatLine(wordlist[i].pt[2]);
+        td_pt_dim    .innerHTML = formatLine(wordlist[i].pt[3]);
+        td_pt_aug_art.innerHTML = formatLine(wordlist[i].pt[4]);
+        td_pt_aug    .innerHTML = formatLine(wordlist[i].pt[5]);
+
+        td_nl_art    .innerHTML = formatLine(wordlist[i].nl[0]);
+        td_nl        .innerHTML = formatLine(wordlist[i].nl[1]);
+        td_nl_pl_art .innerHTML = formatLine(wordlist[i].nl[2]);
+        td_nl_pl     .innerHTML = formatLine(wordlist[i].nl[3]);
+        td_nl_dim_art.innerHTML = formatLine(wordlist[i].nl[4]);
+        td_nl_dim    .innerHTML = formatLine(wordlist[i].nl[5]);
+
+        document.querySelector("#translation tbody").appendChild(tr);
+    }
+}
+
+wordlist = [
+{ pt: ["o","c[To]rpo","","corpinho","","corpão"],       nl: ["het","l[i]chaam","","lichamen","","lichaampje"], section: true },
+{ pt: ["a","cab[e]ça","","cabecinha","","cabeçona"],    nl: ["het","h[oo]fd","","hoofden","","hoofdje"] },
+{ pt: ["o","[To]lho","","olhinho","","olhão"],          nl: ["het","[oo]g","","ogen","","oogje"] },
+{ pt: ["a","or[e]lha","","orelhinha","o","orelhão"],     nl: ["het","[oo]r","","oren","","oortje"] },
+{ pt: ["o","ouv[i]do","","ouvidinho","","ouvidão"],     nl: ["het","[oo]r(gat)","","oorg{Ra}ten","","oorg{Raa}tje"] },
+{ pt: ["o","nar[i]z","","narizinho","","narigão"],      nl: ["de","n[eu]s","","neuzen","","neusje"] },
+
+{ pt: ["a","f[ɔ]rma","","forminha","","formona"],      nl: ["de","vorm","","vormen","","vormpje"], section: true },
+{ pt: ["o","quadr[a]do","","quadradinho","","quadradão"],     nl: ["het","v[ie]rkant","","vierkanten","","vierkantje"] },
+];
+
 </script>
 </head>
 <body onload="init()">
 <div id="cont">
-<button onclick="translation.classList.toggle('collapseleft')">left</button>
-<button onclick="translation.classList.toggle('collapseright')">right</button>
-<div id="table2">
-    <div class="tablerow"></div>
-
-</div>
-
-
 <table id="translation">
     <tr>
-        <th><abbr title="diminutivo">diminutive</abbr></th><th><abbr title="aumentativo">augmentative</abbr></th>
-        <th><ul><li>português</li></ul></th><th><ul><li>Nederlands</li></ul></th>
-        <th><abbr title="meervoud">plural</abbr> {T(de)}</th><th><abbr title="verkleinwoord">diminutive</abbr> {T(het)}</th>
-    </tr>
-    <tr class="section"><td>corpinho</td><td>corpão</td><td><ul><li data-pre="o">c[To]rpo</li></ul></td>
-        <td><ul><li data-pre="het">l[i]chaam</li></ul></td><td>lichamen</td><td>lichaampje</td></tr>
-    <tr><td>cabecinha</td><td>cabeçona</td><td><ul><li data-pre="a">cab[e]ça</li></ul></td>
-        <td><ul><li data-pre="het">h[oo]fd</li></ul></td><td>hoofden</td><td>hoofdje</td></tr>
-    <tr><td>olhinho</td><td>olhão</td><td><ul><li data-pre="o">[To]lho</li></ul></td>
-        <td><ul><li data-pre="het">[oo]g</li></ul></td><td>ogen</td><td>oogje</td></tr>
-    <tr><td>orelhinha</td><td data-pre="o">orelhão</td><td><ul><li data-pre="a">or[e]lha</li></ul></td>
-        <td><ul><li data-pre="het">[oo]r</li><li><small>say like US Eng. "ore"</small></li></ul></td><td>oren</td><td>oortje</td></tr>
-    <tr><td>ouvidinho</td><td>ouvidão</td><td><ul><li data-pre="o">ouv[i]do</li></ul></td>
-        <td><ul><li data-pre="het">[oo]r(gat)</li></ul></td><td>oorgaten</td><td>oorgaatje</td></tr>
-    <tr><td>narizinho</td><td>narigão</td><td><ul><li data-pre="o">nar[i]z</li></ul></td>
-        <td><ul><li data-pre="de">n[eu]s</li></ul></td><td>neuzen</td><td>neusje</td></tr>
-
-    <tr class="section"><td>forminha</td><td>formona</td><td><ul><li data-pre="a">f[ɔ]rma</li></ul></td>
-        <td><ul><li data-pre="de">v[o]rm</li></ul></td><td>vormen</td><td>vormpje</td></tr>
+        <th colspan=2 class="pt"><abbr title="diminutivo">diminutive</abbr></th>
+        <th colspan=2 class="pt"><abbr title="aumentativo">augmentative</abbr></th>
+        <th colspan=2 class="pt maincol"><ul><li>português</li></ul></th><th colspan=2 class="nl maincol"><ul><li>Nederlands</li></ul></th>
+        <th colspan=2 class="nl"><abbr title="meervoud">plural</abbr> {T(de)}</th>
+        <th colspan=2 class="nl"><abbr title="verkleinwoord">diminutive</abbr> {T(het)}</th>
+<!--
     <tr><td>circulinho<br>rodinha</td><td>circulão<br>rodona</td><td><ul><li data-pre="o">c[í]rculo</li><li data-pre="a">r[ɔ]da</li></ul></td>
         <td><ul><li data-pre="de">c[i]rkₑl</li><li data-pre="de">kr[i]ng</li><li data-pre="het">r[o]ndje</li></ul></td><td>cirkels<br>kringen<br>rondjes</td><td>cirkeltje<br>kringetje<br>&NoBreak;</td></tr>
     <tr><td>quadradinho</td><td>quadradão</td><td><ul><li data-pre="o">quadr[a]do</li></ul></td>
@@ -233,6 +231,7 @@ function init() {
         <td><ul><li>c[oa]<span class="blue">ch</span></li></ul></td><td></td><td></td></tr>
     <tr><td></td><td></td><td><ul><li data-pre="a">B[é]lgica</li></ul></td>
         <td><ul><li>ma<span class="red">ch</span>[i]ne</li></ul></td><td></td><td></td></tr>
+-->
 </table>
 </div>
 </body>
