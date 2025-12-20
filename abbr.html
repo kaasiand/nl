@@ -1,0 +1,335 @@
+<style>
+@font-face {
+    font-family: "pretext";
+    src: url("Pretext-VF.ttf");
+}
+@font-face {
+    font-family: "Geoform";
+    src: url("Geoform.otf");
+}
+@font-face {
+    font-family: "Geoform";
+    font-weight: bold;
+    src: url("Geoform-Bold.otf");
+}
+
+table {
+    margin: 20px 20px 40px;
+}
+ul {
+    margin-left: -5px;
+    margin-bottom: 10px;
+}
+table:first-child th[colspan] {
+    padding-left: 15%;
+    text-align: left;
+}
+th[colspan] {
+}
+th,td {
+    white-space: nowrap;
+    padding: 8px 8px 8px 8px;
+    font-family: "pretext";
+    font-size: 1.8rem;
+    & small {
+    font-size: 1.2rem;
+    }
+    & li::marker {
+        content: attr(data-pre) " ";
+        font-size: 1.2rem;
+        padding-right: 10px;
+    }
+    & li:not(.transp)::marker {
+        color: #0006;
+    }
+    & li.pronunc {
+        font-size: 1rem;
+    }
+}
+.red { color: red }
+th .transp { opacity: 0.5 }
+td .transp { opacity: 0.6 }
+html {
+    font-size: 16px;
+}
+
+</style>
+<div style="display: flex; flex-direction: row; align-items: flex-start">
+<table>
+    <tr>
+        <th colspan=3>common all-purpose abbreviations<br><small class="transp">these are normally read out loud as the full unabbreviated words,<br>though a.u.b., s.v.p., z.s.m. are commonly said out loud as letters too</small></th>
+    </tr>
+    <tr>
+        <th>v.d.<br>v.h.</th>
+        <td><b>v</b>an <b>d</b>e<br><b>v</b>an <b>h</b>et</td>
+        <td>of the</td>
+    </tr>
+    <tr>
+        <th>a.u.b.<br>ajb<br>s.v.p.</th>
+        <td><b>a</b>lst<b>u</b><b>b</b>lieft<br><b>a</b>ls<b>j</b>e<b>b</b>lieft<br><b>s</b>'il <b>v</b>ous <b>p</b>laît</td>
+        <td>please<br><small class="transp">(the abbreviation is not often used for the other<br>"here you go; take this" meaning of alstublieft/alsjeblieft)</small></td>
+    </tr>
+    <tr>
+        <th>i.p.v.</th>
+        <td><b>i</b>n <b>p</b>laats <b>v</b>an</td>
+        <td>instead of</td>
+    </tr>
+    <tr>
+        <th>i.i.g.<br>i.e.g.</th>
+        <td><b>i</b>n <b>i</b>eder <b>g</b>eval<br><b>i</b>n <b>e</b>lk <b>g</b>eval</td>
+        <td>in any case; anyhow</td>
+    </tr>
+    <tr>
+        <th>d.m.v.<br>m.b.v.<br>a.d.h.v.</th>
+        <td><b>d</b>oor <b>m</b>iddel <b>v</b>an<br><b>m</b>et <b>b</b>ehulp <b>v</b>an<br><b>a</b>an <b>d</b>e <b>h</b>and <b>v</b>an</td>
+        <td>using; by means of</td>
+    </tr>
+    <tr>
+        <th>t.o.v.</th>
+        <td><b>t</b>en <b>o</b>pzichte <b>v</b>an</td>
+        <td>with respect to; compared to</td>
+    </tr>
+    <tr>
+        <th>m.b.t.</th>
+        <td><b>m</b>et <b>b</b>etrekking <b>t</b>ot</td>
+        <td>concerning; about</td>
+    </tr>
+    <!-- tr>
+        <th>i.h.k..v.</th>
+        <td><b>i</b>n <b>h</b>et <b>k</b>ader <b>v</b>an</td>
+        <td>within the context of</td>
+    </tr -->
+    <tr>
+        <th>ong<span class="transp">(v)</span>.<br>ca.</th>
+        <td><b>ong</b>e<b>v</b>eer<br><b>c</b>irc<b>a</b></td>
+        <td>approximately</td>
+    </tr>
+    <tr>
+        <th>m.i.</th>
+        <td><b>m</b>ijns <b>i</b>nziens</td>
+        <td>in my opinion</td>
+    </tr>
+    <tr>
+        <th>i.c.m.</th>
+        <td><b>i</b>n <b>c</b>ombinatie <b>m</b>et</td>
+        <td>in conjunction with</td>
+    </tr>
+    <tr>
+        <th>enz.<br>etc.</th>
+        <td><b>enz</b>ovoort<br><b>et c</b>etera</td>
+        <td>and so forth; et cetera</td>
+    </tr>
+    <tr>
+        <th>d.w.z.</th>
+        <td><b>d</b>at <b>w</b>il <b>z</b>eggen</td>
+        <td>that is to say; i.e.</td>
+    </tr>
+    <tr>
+        <th>b<span class="transp">(ĳ)</span>v.</th>
+        <td><b>bĳv</b>oorbeeld</td>
+        <td>for example; e.g.</td>
+    </tr>
+    <tr>
+        <th>o.a.</th>
+        <td><b>o</b>nder <b>a</b>ndere</td>
+        <td>among others</td>
+    </tr>
+    <tr>
+        <th>o.i.d.</th>
+        <td><b>o</b>f <b>i</b>ets <b>d</b>ergelijks</td>
+        <td>or something like that</td>
+    </tr>
+    <tr>
+        <th>a.s.</th>
+        <td><b>a</b>an<b>s</b>taande</td>
+        <td>next; future <small class="transp">(example: <i>aanstaande dinsdag</i> – next Tuesday)</small></td>
+    </tr>
+    <tr>
+        <th>z.s.m.</th>
+        <td><b>z</b>o <b>s</b>nel/<b>s</b>poedig <b>m</b>ogelijk</td>
+        <td>as soon as possible; ASAP</td>
+    </tr>
+    <tr>
+        <th>n.v.t.</th>
+        <td><b>n</b>iet <b>v</b>an <b>t</b>oepassing</td>
+        <td>not applicable; N/A</td>
+    </tr>
+    <tr>
+        <th colspan=3>contracted/reduced forms<br><small class="transp">often used in text messaging too, with apostrophes commonly dropped</small></th>
+    </tr>
+    <tr>
+        <th>'s</th>
+        <td><span class="transp">de<b>s</b></span></td>
+        <td><span class="transp">(archaic)</span> of the; in the<br><small class="transp">no longer interchangeable in modern-day language.<br>only still common in some fixed constructions, such as<br><b>'s morgens</b> "in the morning",  <b>... des doods</b> "... of death"</small></td>
+    </tr>
+    <tr>
+        <th>'t</th>
+        <td>he<b>t</b></td>
+        <td>the; it</td>
+    </tr>
+    <tr>
+        <th>'n</th>
+        <td>ee<b>n</b></td>
+        <td>a; an <small class="transp">(not used when pronounced like <b>één</b>; meaning "one")</small></td>
+    </tr>
+    <tr>
+        <th>'k</th>
+        <td>i<b>k</b></td>
+        <td>I</td>
+    </tr>
+    <tr>
+        <th>m'n</th>
+        <td><b>m</b>ij<b>n</b></td>
+        <td>my</td>
+    </tr>
+    <tr>
+        <th>z'n</th>
+        <td><b>z</b>ij<b>n</b></td>
+        <td>his; its <small class="transp">(never used for the verb <b>zijn</b> "to be")</small></td>
+    </tr>
+    <tr>
+        <th>-ie</th>
+        <td>h<b>ij</b></td>
+        <td>he <small class="transp">(only if it comes after the verb; gets attached to its end)</small></td>
+    </tr>
+    <tr>
+        <th>d'r</th>
+        <td>haa<b>r</b><br>e<b>r</b></td>
+        <td>her <small class="transp">(never used for the noun <b>haar</b> "hair")</small><br>there</td>
+    </tr>
+    <tr>
+        <th>'<span class="transp">(n)</span>s<br>es</th>
+        <td>ee<b>ns</b></td>
+        <td><small class="transp">(literally, when stressed: "once"; the unstressed form is used to<br>soften imperatives and is usually left untranslated in English.<br>Example: <i>Probeer dit eens! / Probeer dit 's!</i> – "Try this!")</small></td>
+    </tr>
+    <tr>
+        <th>effe<br>ff</th>
+        <td>even</td>
+        <td><small class="transp">(literally "briefly"; often used like English "for a sec/moment"<br>but commonly left untranslated in English too.<br>Example: <i>Kun je even opzij?</i> – "Could you move aside for a sec?")</small></td>
+    </tr>
+    <tr>
+        <th colspan=3>text messaging abbreviations</th>
+    </tr>
+    <tr>
+        <th>gwn</th>
+        <td><b>g</b>e<b>w</b>oo<b>n</b></td>
+        <td>simply; just<br><small class="transp">(not used for the adjective <b>gewoon</b> "ordinary; normal")</small></td>
+    </tr>
+    <tr>
+        <th>ws<span class="transp">(s)</span></th>
+        <td><b>w</b>aar<b>s</b>chijnlijk</td>
+        <td>probably; most likely</td>
+    </tr>
+    <tr>
+        <th>wrm<br>hz</th>
+        <td><b>w</b>aa<b>r</b>o<b>m</b><br><b>h</b>oe<b>z</b>o</td>
+        <td>why; how so</td>
+    </tr>
+    <tr>
+        <th>sws</th>
+        <td><b>s</b>o<b>w</b>ie<b>s</b>o</td>
+        <td>anyway <span class="transp">or</span> necessarily <small class="transp">(this word is from German)</small></td>
+    </tr>
+    <tr>
+        <th>m<span class="transp">(i)</span>ss</th>
+        <td><b>miss</b>chien</td>
+        <td>maybe</td>
+    </tr>
+    <tr>
+        <th>idd</th>
+        <td><b>i</b>n<b>d</b>er<b>d</b>aad</td>
+        <td>indeed</td>
+    </tr>
+    <tr>
+        <th>lm</th>
+        <td><b>l</b>aat <b>m</b>aar</td>
+        <td>never mind (nvm)</td>
+    </tr>
+    <tr>
+        <th>vgm</th>
+        <td><b>v</b>ol<b>g</b>ens <b>m</b>ij</td>
+        <td>I think <small class="transp">(literally: according to me)</small></td>
+    </tr>
+    <tr>
+        <th>gvd</th>
+        <td><b>g</b>od<b>v</b>er<b>d</b>omme</td>
+        <td><span class="transp">(vulgar)</span> goddammit (gdi)</td>
+    </tr>
+    <tr>
+        <th>omg</th>
+        <td><b>o</b><span class="transp">(h)</span> <b>m</b>ijn <b>g</b>od</td>
+        <td>oh my god</td>
+    </tr>
+    <tr>
+        <th>kk</th>
+        <td><b>k</b>an<b>k</b>er</td>
+        <td><span class="transp">(vulgar)</span> fuck; shit <small class="transp">(literally: cancer)</small></td>
+    </tr>
+    <tr>
+        <th>wtkk<br>wtf</th>
+        <td><b>w</b>at <b>d</b>e <b>k</b>an<b>k</b>er<br><b>w</b>at <b>d</b>e <b>f</b>uck</td>
+        <td><span class="transp">(vulgar)</span> what the fuck</small></td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th colspan=3>geographic abbreviations</th>
+    </tr>
+    <tr>
+        <th>NL</th>
+        <td><b>N</b>eder<b>l</b>and</td>
+        <td>the Netherlands</td>
+    </tr>
+    <tr>
+        <th>BE</th>
+        <td><b>Be</b>lgië</td>
+        <td>Belgium</td>
+    </tr>
+    <tr>
+        <th><small class="transp">de </small>VS</th>
+        <td>de <b>V</b>erenigde <b>S</b>taten</td>
+        <td>the United States</td>
+    </tr>
+    <tr>
+        <th><small class="transp">het </small>VK</th>
+        <td>het <b>V</b>erenigd <b>K</b>oninkrijk</td>
+        <td>the United Kingdom</td>
+    </tr>
+    <tr>
+        <th><small class="transp">de </small>EU</th>
+        <td>de <b>E</b>uropese <b>U</b>nie</td>
+        <td>the European Union</td>
+    </tr>
+    <tr>
+        <th><small class="transp">de </small>Benelux</th>
+        <td colspan=2><b>Be</b>lgië, <b>Ne</b>derland <abbr title="and">en</abbr> <b>Lux</b>emburg</td>
+    </tr>
+    <tr>
+        <th>NH</th>
+        <td><b>N</b>oord-<b>H</b>olland</td>
+        <td><span class="transp">(province)</span> North Holland</td>
+    </tr>
+    <tr>
+        <th>ZH</th>
+        <td><b>Z</b>uid-<b>H</b>olland</td>
+        <td><span class="transp">(province)</span> South Holland</td>
+    </tr>
+    <tr>
+        <th>NB</th>
+        <td><b>N</b>oord-<b>B</b>rabant</td>
+        <td><span class="transp">(province)</span> North Brabant</td>
+    </tr>
+    <tr>
+        <th colspan=3>other</th>
+    </tr>
+    <tr>
+        <th>NS</th>
+        <td><b>N</b>ederlandse <b>S</b>poorwegen</td>
+        <td>main Dutch railway operator</td>
+    </tr>
+    <tr>
+        <th>IC</th>
+        <td><b>i</b>nter<b>c</b>ity<span class="transp">(trein)</span><br><b>i</b>ntensive <b>c</b>are</td>
+    </tr>
+</table>
+</div>

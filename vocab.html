@@ -1,0 +1,239 @@
+<html>
+<head>
+<style>
+
+
+
+@media screen and (orientation: portrait) {
+    #translation :is(td,th):is(:nth-child(1),:nth-child(2)) {
+        display: none;
+    }
+
+}
+
+@font-face {
+    font-family: "pretext";
+    src: url("Pretext-VF.ttf");
+}
+@font-face {
+    font-family: "Geoform";
+    src: url("Geoform.otf");
+}
+@font-face {
+    font-family: "Geoform";
+    font-weight: bold;
+    src: url("Geoform-Bold.otf");
+}
+
+table {
+
+    margin-bottom: 20px;
+    white-space: nowrap;
+    
+    font-family: "pretext";
+    /*font-variation-settings: "MONO" 0;*/
+}
+b { font-weight: 700; }
+ul {
+        margin-top: 0;
+    margin-left: -5px;
+    margin-bottom: 0;
+    & li:not(:first-child) {
+    margin: -3px 0 0;
+    }
+
+    & li:has(>small) {
+        margin-top: -10px !important;
+        >small {
+            font-size: 50%;
+        }
+    }
+}
+ul {
+}
+td {
+    vertical-align: center;
+    padding: 3px 20px 3px;
+}
+th {
+    padding: 0px 10px 0 20px;
+
+    tr:first-child &, &[colspan] {
+        padding: 10px 10px 10px;
+    }
+    & ul {
+        padding: 0;
+    }
+}
+td[colspan] {
+    text-align: center;
+}
+td:not([data-pre]):nth-child(1), td:not([data-pre]):nth-child(2) {
+    padding-left: 25px;
+}
+td[data-pre] {
+    padding-left: 10px;
+    &::before {
+        content: attr(data-pre) " ";
+        color: #0006;
+    }
+}
+th,td {
+    transition: transform .2s, max-width .2s, font-size .2s, padding-left .2s, padding-right .2s;
+    transform: scaleX(1);
+    max-width: 20vw;
+    font-size: 2rem;
+    & li::marker {
+        content: attr(data-pre) " ";
+        font-size: 1.2rem;
+        padding-right: 10px;
+    }
+    & li:not(.transp)::marker {
+        color: #0006;
+    }
+}
+
+#translation {
+width: 100%;
+    border-collapse: collapse;
+
+    td,th { width: 1px };
+
+    & tr>:nth-child(1) { transform-origin: 200%; }
+    & tr>:nth-child(2) { transform-origin: right; }
+    & tr>:nth-child(5) { transform-origin: left; }
+    & tr>:nth-child(6) { transform-origin: -100%; }
+    & tr>:not(:nth-child(3)):not(:nth-child(4)) {
+        font-size: 1.5rem;
+    }
+    & tr.section {
+        border-top: 15px solid transparent;
+        border-bottom: 10px solid transparent;
+
+        &>:not(:nth-child(3)):not(:nth-child(4)) {
+            background-color: #ca56;
+        }
+        &>:nth-child(3), &>:nth-child(4) {
+            background-color: #ca5a;
+        }
+    }
+}
+html {
+    font-size: 12pt;
+}
+#cont {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.red { color: #c00 }
+.blue { color: #04f }
+
+s { opacity: 0.5; text-decoration: none; }
+.transp { opacity: 0.5 }
+
+.collapseleft {
+    & :is(td,th):is(:nth-child(1),:nth-child(2)) {
+        transform: scaleX(1);
+        max-width: 0px !important;
+        font-size: 0rem !important;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+}
+.collapseright {
+    & :is(td,th):is(:nth-child(5),:nth-child(6)) {
+        transform: scaleX(0);
+        max-width: 0px !important;
+        font-size: 0rem !important;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+}
+
+#table2 {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+</style>
+<script src="format.js"></script>
+<script>
+function init() {
+    formatElement("translation");
+}
+</script>
+</head>
+<body onload="init()">
+<div id="cont">
+<button onclick="translation.classList.toggle('collapseleft')">left</button>
+<button onclick="translation.classList.toggle('collapseright')">right</button>
+<div id="table2">
+    <div class="tablerow"></div>
+
+</div>
+
+
+<table id="translation">
+    <tr>
+        <th><abbr title="diminutivo">diminutive</abbr></th><th><abbr title="aumentativo">augmentative</abbr></th>
+        <th><ul><li>português</li></ul></th><th><ul><li>Nederlands</li></ul></th>
+        <th><abbr title="meervoud">plural</abbr> {T(de)}</th><th><abbr title="verkleinwoord">diminutive</abbr> {T(het)}</th>
+    </tr>
+    <tr class="section"><td>corpinho</td><td>corpão</td><td><ul><li data-pre="o">c[To]rpo</li></ul></td>
+        <td><ul><li data-pre="het">l[i]chaam</li></ul></td><td>lichamen</td><td>lichaampje</td></tr>
+    <tr><td>cabecinha</td><td>cabeçona</td><td><ul><li data-pre="a">cab[e]ça</li></ul></td>
+        <td><ul><li data-pre="het">h[oo]fd</li></ul></td><td>hoofden</td><td>hoofdje</td></tr>
+    <tr><td>olhinho</td><td>olhão</td><td><ul><li data-pre="o">[To]lho</li></ul></td>
+        <td><ul><li data-pre="het">[oo]g</li></ul></td><td>ogen</td><td>oogje</td></tr>
+    <tr><td>orelhinha</td><td data-pre="o">orelhão</td><td><ul><li data-pre="a">or[e]lha</li></ul></td>
+        <td><ul><li data-pre="het">[oo]r</li><li><small>say like US Eng. "ore"</small></li></ul></td><td>oren</td><td>oortje</td></tr>
+    <tr><td>ouvidinho</td><td>ouvidão</td><td><ul><li data-pre="o">ouv[i]do</li></ul></td>
+        <td><ul><li data-pre="het">[oo]r(gat)</li></ul></td><td>oorgaten</td><td>oorgaatje</td></tr>
+    <tr><td>narizinho</td><td>narigão</td><td><ul><li data-pre="o">nar[i]z</li></ul></td>
+        <td><ul><li data-pre="de">n[eu]s</li></ul></td><td>neuzen</td><td>neusje</td></tr>
+
+    <tr class="section"><td>forminha</td><td>formona</td><td><ul><li data-pre="a">f[ɔ]rma</li></ul></td>
+        <td><ul><li data-pre="de">v[o]rm</li></ul></td><td>vormen</td><td>vormpje</td></tr>
+    <tr><td>circulinho<br>rodinha</td><td>circulão<br>rodona</td><td><ul><li data-pre="o">c[í]rculo</li><li data-pre="a">r[ɔ]da</li></ul></td>
+        <td><ul><li data-pre="de">c[i]rkₑl</li><li data-pre="de">kr[i]ng</li><li data-pre="het">r[o]ndje</li></ul></td><td>cirkels<br>kringen<br>rondjes</td><td>cirkeltje<br>kringetje<br>&NoBreak;</td></tr>
+    <tr><td>quadradinho</td><td>quadradão</td><td><ul><li data-pre="o">quadr[a]do</li></ul></td>
+        <td><ul><li data-pre="het">v[ie]r·kant</li></ul></td><td>vierkanten</td><td>vierkantje</td></tr>
+    <tr><td>retangulinho</td><td>retangulão</td><td><ul><li data-pre="o">ret[â]ngulo</li></ul></td>
+        <td><ul><li data-pre="de">r[e]cht·hoek</li></ul></td><td>rechthoeken</td><td>rechthoekje</td></tr>
+    <tr><td>triangulinho</td><td>triangulão</td><td><ul><li data-pre="o">tri[â]ngulo</li></ul></td>
+        <td><ul><li data-pre="de">dr[ie]·hoek</li><li><small>music instrument is</small></li><li><small>"de&nbsp;tri[a]ngel" (triangels)</small></li></ul></td><td>driehoeken</td><td>driehoekje</td></tr>
+    <tr><td>hexagoninho</td><td>hexagonão</td><td><ul><li data-pre="o">he{Bx}[á]gono</li></ul></td>
+        <td><ul><li data-pre="de">z[e]s·hoek</li></ul></td><td>zeshoeken</td><td>zeshoekje</td></tr>
+
+
+    <tr class="section"><td>paisinho</td><td>paisão</td><td><ul><li data-pre="o">pa[í]s</li></ul></td>
+        <td><ul><li data-pre="het">l[a]nd</li></ul></td><td>landen</td><td>landje</td></tr>
+    <tr><td>Brasilzinho</td><td>Brasilzão</td><td><ul><li data-pre="o">Bras[i]l</li></ul></td>
+        <td><ul><li>Braz[i]lië</li></ul></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td><ul><li data-pre="os">Pa[í]ses B[ai]xos</li></ul></td>
+        <td><ul><li>N[e]dₑrland</li></ul></td><td>Nederlanden</td><td>Nederlandje</td></tr>
+    <tr><td></td><td></td><td><ul><li data-pre="a">Hol[a]nda</li></ul></td>
+        <td><ul><li>H[o]lland</li></ul></td><td></td><td>Hollandje</td></tr>
+    <tr><td></td><td></td><td><ul><li data-pre="a">B[é]lgica</li></ul></td>
+        <td><ul><li>B[e]lgië</li></ul></td><td></td><td></td></tr>
+
+
+    <tr><td></td><td></td><td><ul><li data-pre="a">B[é]lgica</li></ul></td>
+        <td><ul><li>B[e]lgië</li></ul></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td><ul><li data-pre="a">B[é]lgica</li></ul></td>
+        <td><ul><li>b[ij]lage</li></ul></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td><ul><li data-pre="a">B[é]lgica</li></ul></td>
+        <td><ul><li>assembl[a]<span class="red">g</span>e</li></ul></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td><ul><li data-pre="a">B[é]lgica</li></ul></td>
+        <td><ul><li>orchid[ee]</li></ul></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td><ul><li data-pre="a">B[é]lgica</li></ul></td>
+        <td><ul><li>c[oa]<span class="blue">ch</span></li></ul></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td><ul><li data-pre="a">B[é]lgica</li></ul></td>
+        <td><ul><li>ma<span class="red">ch</span>[i]ne</li></ul></td><td></td><td></td></tr>
+</table>
+</div>
+</body>
+</html>

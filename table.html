@@ -1,0 +1,497 @@
+<html>
+<head>
+<style>
+
+@font-face {
+    font-family: "pretext";
+    src: url("Pretext-VF.ttf");
+}
+@font-face {
+    font-family: "Geoform";
+    src: url("Geoform.otf");
+}
+@font-face {
+    font-family: "Geoform";
+    font-weight: bold;
+    src: url("Geoform-Bold.otf");
+}
+
+table {
+    margin-bottom: 20px;
+    
+    font-family: "pretext";
+    /*font-variation-settings: "MONO" 0;*/
+}
+b { font-weight: 700; }
+ul {
+        margin-top: 0;
+    margin-left: -5px;
+    margin-bottom: 0;
+}
+td {
+    padding: 0px 0px 0px 0px;
+    & ul {
+    }
+    #vowels th+& {
+        padding-left: 20px;
+        padding-right: 70px;
+    }
+}
+th {
+    padding: 0px 10px 0 20px;
+
+    tr:first-child &, &[colspan] {
+        padding: 10px 10px 10px;
+    }
+    & ul {
+        padding: 0;
+    }
+}
+td[colspan] {
+    text-align: center;
+}
+th,td {    
+    font-size: 1.8rem;
+    & small {
+    font-size: 1.3rem;
+    }
+    & li::marker {
+        content: attr(data-pre) " ";
+        font-size: 1.3rem;
+        padding-right: 5px;
+    }
+    & li:not(.transp)::marker {
+        color: #0005;
+    }
+}
+
+.pronunc {
+    li&, & li, & td {
+        font-size: 1.3rem;
+    }
+    & td, li&:last-child {
+        transform: translateY(-5px);
+        padding-bottom: 10px;
+        vertical-align: top;
+    }
+}
+.red { color: #c00 }
+.transp { opacity: 0.4 }
+
+html {
+    font-size: 16px;
+}
+</style>
+<script src="format.js"></script>
+<script>
+function init() {
+    formatElement("vowels");
+    formatElement("phthong");
+}
+</script>
+</head>
+<body onload="init()">
+<table id="vowels">
+    <tr>
+        <th></th>
+        <th>short vowels</th>
+        <th colspan=2>long vowels</th>
+    </tr>
+    <tr>
+        <th>a/aa</th>
+        <td>
+            <ul>
+                <li data-pre="de"><abbr title="the branch">t[a]k</abbr></li>
+                <li data-pre="de"><abbr title="the branches">t[a]k·ken</abbr></li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li data-pre="de"><abbr title="the task">t[aa]k</abbr></li>
+                <li data-pre="de"><abbr title="the tasks">t[Ra]·ken</abbr></li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li data-pre="de"><abbr title="the lettuce">sl[Ra]</abbr></li>
+                <li data-pre="het"><abbr title="a alfacinha; a saladinha">sl<b>aa</b>tje</abbr></li>
+            </ul>
+        </td>
+    </tr>
+    <tr class="pronunc">
+        <th></th>
+        <td><ul>
+                <li><b>a</b> in f<b>a</b>ther</li>
+        </ul></td>
+        <td colspan=2><li><b>á</b> in ol<b>á</b></li></td>
+    </tr>
+    <tr>
+        <th>e<small class="transp"> <abbr title="'stomme e' (or uncommonly, 'sjwa') in Dutch; a short unstressed vowel sound produced in the centre of the mouth, like 'uhhh'">(schwa)</abbr></small></th>
+        <td>
+            <ul>
+                <li data-pre="de"><abbr title="the herd/flock">kud·d<b>e</b></abbr></li>
+            </ul>
+        </td>
+    </tr>
+    <tr class="pronunc">
+        <th></th>
+        <td colspan=2><ul>
+                <li>[o] in reck[o]n. Never receives syllable stress</li>
+        </ul></td>
+    </tr>
+    <tr>
+        <th>e/ee</th>
+        <td>
+            <ul>
+                <li data-pre="de"><abbr title="the beak / (animal) mouth">b[e]k</abbr></li>
+                <li data-pre="de"><abbr title="the beaks / (animal) mouths">b[e]k·ken</abbr></li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li data-pre="de"><abbr title="the creek">b[ee]k</abbr></li>
+                <li data-pre="de"><abbr title="the creeks">b[Re]·ken</abbr></li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li data-pre="de"><abbr title="the sea">z<b>ee</b></abbr></li>
+                <li data-pre="het"><abbr title="o marzinho">z<b>ee</b>tje</abbr></li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li><abbr title="okay">o·k<b>é</b></abbr></li>
+                <li><abbr title="okayzinho">o·k<b>ee</b>tjes</abbr></li>
+            </ul>
+        </td>
+    </tr>
+    <tr class="pronunc">
+        <th></th>
+        <td><ul>
+                <li><b>é</b> in <b>é</b>tico</li>
+        </ul></td>
+        <td colspan=2><li><b>ei</b> in <b>ei</b>ta</li></td>
+    </tr>
+    <tr>
+        <th>i/ie</th>
+        <td>
+            <ul>
+                <li data-pre="het"><abbr title="the set of teeth; the denture">ge·b<b>i</b>t</abbr></li>
+                <li data-pre="de"><abbr title="the sets of teeth; the dentures">ge·b<b>i</b>t·ten</abbr></li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li data-pre="het"><abbr title="the area">ge·b<b>ie</b>d</abbr></li>
+                <li data-pre="de"><abbr title="the areas">ge·b<b>ie</b>·den</abbr></li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li data-pre="de"><abbr title="the taxi">tax<b class="red">i</b></abbr><span class="transp">*</span></li>
+                <li data-pre="het"><abbr title="o taxizinho">tax<b>ie</b>tje</abbr><span class="transp">*</span></li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li data-pre="de"><abbr title="the knee">kn<b>ie</b></abbr></li>
+                <li data-pre="de"><abbr title="the litre">l<b class="red">i</b>·ter</abbr></li>
+            </ul>
+        </td>
+    </tr>
+    <tr class="pronunc">
+        <th></th>
+        <td><ul>
+                <li>same as Eng. l<b>i</b>p</li>
+        </ul></td>
+        <td colspan=2><li><b>i</b> in p<b>i</b>zza</li></td>
+    </tr>
+    <tr>
+        <th>o/oo</th>
+        <td>
+            <ul>
+                <li data-pre="het"><abbr title="the bone">b<b>o</b>t</abbr></li>
+                <li data-pre="de"><abbr title="the bones">b<b>o</b>t·ten</abbr></li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li data-pre="de"><abbr title="the boat">b<b>oo</b>t</abbr></li>
+                <li data-pre="de"><abbr title="the boats">b<b class="red">o</b>·ten</abbr></li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li data-pre="de"><abbr title="the photo">fo·t<b class="red">o</b></abbr></li>
+                <li data-pre="het"><abbr title="a fotinho">fo·t<b>oo</b>tje</abbr></li>
+            </ul>
+        </td>
+    </tr>
+    <tr class="pronunc">
+        <th></th>
+        <td><ul>
+                <li><b>ó</b> in <b>ó</b>timo</li>
+        </ul></td>
+        <td colspan=2><li><b>ou</b> in fal<b>ou</b></li></td>
+    </tr>
+    <tr>
+        <th>u/uu</th>
+        <td>
+            <ul>
+                <li data-pre="het"><abbr title="the use/purpose">n<b>u</b>t</abbr></li>
+                <li><abbr title="useful">n<b>u</b>t·tig</abbr></li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li data-pre="de"><abbr title="the minute">mi·n<b>uu</b>t</abbr></li>
+                <li data-pre="de"><abbr title="the minutes">mi·n<b class="red">u</b>·ten</abbr></li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li data-pre="het"><abbr title="the menu">me·n<b class="red">u</b></abbr></li>
+                <li data-pre="het"><abbr title="o menuzinho">me·n<b>uu</b>tje</abbr></li>
+            </ul>
+        </td>
+    </tr>
+    <tr class="pronunc">
+        <th></th>
+        <td><ul>
+                <li><a href="https://forvo.com/word/kut/#nl">like <b>e</b> in French j<b>e</b></a></li>
+        </ul></td>
+        <td colspan=3 style="text-align: left"><ul>
+                <li><a href="https://forvo.com/word/duur/#nl">like French min<b>u</b>te, German <b>ü</b>ber, Finnish n<b>y</b>t</a></li>
+        </ul></td>
+    </tr>
+    <tr>
+        <th>y</th>
+        <td>
+            <ul>
+                <li data-pre="ik"><abbr title="≈I do gym class/PE/gymnastics">g<b>y</b>m</abbr></li>
+                <li data-pre="wij"><abbr title="≈we do gym class/PE/gymnastics">g<b>y</b>m·men</abbr></li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li data-pre="ik"><abbr title="I type">t<b>y</b>p</abbr></li>
+                <li data-pre="wij"><abbr title="we type">t<b>y</b>·pen</abbr></li>
+            </ul>
+        </td>
+        <th style="text-align:right;">oe</th>
+        <td>
+            <ul>
+                <li data-pre="het"><abbr title="the book">b<b>oe</b>k</abbr></li>
+                <li data-pre="de"><abbr title="the books">b<b>oe</b>·ken</abbr></li>
+            </ul>
+        </td>
+    </tr>
+    <tr class="pronunc">
+        <th></th>
+        <td><ul>
+                <li>same as in l<b>i</b>p</li>
+        </ul></td>
+        <td><ul>
+                <li>same as in l<b>ie</b>p</li>
+        </ul></td>
+        <th></th>
+        <td><ul>
+                <li><b>u</b> in f<b>u</b>tebol</li>
+        </ul></td>
+    </tr>
+    <tr class="pronunc">
+        <th></th>
+        <td colspan=5 style="text-align: left">*vowels before <i>x</i> are almost always short (exceptions are mostly French), and words can't be<br>broken up into syllables at <i>x</i>. <i>boksen</i> and <i>boxen</i> are pronounced the same; both with a short o.</td>
+    </tr>
+</table>
+
+<table id="phthong">
+    <tr>
+        <th colspan=4>diphthongs</th>
+    </tr>
+    <tr>
+        <th><ul><li>ei</li><li>ij</li></ul></th><td><ul>
+            <li data-pre="het"><abbr title="the egg"><b>ei</b></abbr></li>
+            <li data-pre="het"><abbr title="the IJ river in Amsterdam"><b>IJ</b></abbr></li>
+            <li class="pronunc"><b>éi</b> in past<b>éi</b>s</li>
+        </ul></td>
+        <th><ul><li>au<span class="transp">(w)</span></li><li>ou<span class="transp">(w)</span></li></ul></th><td><ul>
+            <li><abbr title="blue">bl<b>auw</b></abbr></li>
+            <li><abbr title="old"><b>ou</b>d</abbr></li>
+            <li class="pronunc"><b>au</b> in bacalh<b>au</b></li>
+        </ul></td>
+    </tr>
+    <tr>
+        <th><ul><li>aai</li></ul></th><td><ul>
+            <li data-pre="de"><abbr title="the parrot">papeg<b>aai</b></abbr></li>
+            <li class="pronunc"><b>ai</b> in pap<b>ai</b></li>
+        </ul></td>
+        <th><ul><li>eeuw</li></ul></th><td><ul>
+            <li data-pre="de"><abbr title="the century"><b>eeuw</b></abbr></li>
+            <li class="pronunc">like Portuguese <b>eu</b></li>
+        </ul></td>
+    </tr>
+    <tr>
+        <th><ul><li>ooi</li></ul></th><td><ul>
+            <li data-pre="ik"><abbr title="I throw">g<b>ooi</b></abbr></li>
+            <li class="pronunc">like b<b>oy</b>, but stretched out</li>
+        </ul></td>
+        <th><ul><li>ieuw</li></ul></th><td><ul>
+            <li><abbr title="new">n<b>ieuw</b></abbr></li>
+            <li class="pronunc"><b>iu</b> in v<b>iu</b></li>
+        </ul></td>
+    </tr>
+    <tr>
+        <th><ul><li>oei</li></ul></th><td><ul>
+            <li data-pre="ik"><abbr title="I grow">gr<b>oei</b></abbr></li>
+            <li class="pronunc"><b>ui</b> in c<b>ui</b>dado</li>
+        </ul></td>
+        <th><ul><li>uw</li></ul></th><td><ul>
+            <li><abbr title="(formal) your"><b>uw</b></abbr></li>
+            <li class="pronunc"><a href="https://forvo.com/word/uw/#nl">like how some people say n<b>ew</b><br>without a y sound, not like "nyew"</a></li>
+        </ul></td>
+    </tr>
+    <tr>
+        <th><ul><li>ui</li></ul></th><td><ul>
+            <li data-pre="het"><abbr title="the hatch/trapdoor">l<b>ui</b>k</abbr></li>
+            <li class="pronunc"><a href="https://forvo.com/word/thuis/#nl">like <b>ey</b> in Finnish terv<b>ey</b>s;<br>going from short e to uu</a></li>
+        </ul></td>
+        <th><ul><li>eu</li></ul></th><td><ul>
+            <li><abbr title="nice/pleasant/fun">l<b>eu</b>k</abbr></li>
+            <li data-pre="de"><abbr title="the colour">kl<b>eu</b>r</abbr></li>
+            <li class="pronunc"><a href="https://forvo.com/word/leuk/#nl">like <b>öy</b> in Finnish l<b>öy</b>ly</a></li>
+            <li class="pronunc"><a href="https://forvo.com/word/kleur/#nl">before r: like French coul<b>eu</b>r</a></li>
+        </ul></td>
+    </tr>
+    <tr>
+        <th colspan=4><abbr title="&ldquo;Dutch is French with mistakes&rdquo;">&ldquo;Nederlands is Frans met fouten&rdquo;</abbr></th>
+    </tr>
+    <tr>
+        <th><ul><li>au</li><li>eau</li></ul></th><td><ul>
+            <li data-pre="het"><abbr title="the restaurant">rest<b>au</b>rant</abbr></li>
+            <li data-pre="het"><abbr title="the gift/present">cad<b>eau</b></abbr></li>
+        </ul></td>
+        <th><ul><li>an<span class="transp">(t)</span></li><li>en<span class="transp">(t)</span></li></ul></th><td><ul>
+            <li data-pre="de"><abbr title="the ambulance">ambul<b>an</b>ce</abbr></li>
+            <li data-pre="het"><abbr title="the grave accent">acc<b>ent</b> grave</abbr></li>
+        </ul></td>
+    </tr>
+    <tr class="pronunc">
+        <th></th><td><ul>
+                <li>native equivalent: long <b>o</b>/<b>oo</b></li>
+        </ul></td>
+        <th></th><td><ul>
+                <li><b>a</b> in f<b>a</b>ther, but nasal<br>similar to <b>ã</b> in amanh<b>ã</b></li>
+        </ul></td>
+    </tr>
+    <tr>
+        <th><ul><li>ou</li></ul></th><td><ul>
+            <li data-pre="het"><abbr title="the new broadcast (program)">j<b>ou</b>rnaal</abbr></li>
+        </ul></td>
+        <th><ul><li>in</li></ul></th><td><ul>
+            <li data-pre="het"><abbr title="the basin/reservoir">bass<b>in</b></abbr></li>
+        </ul></td>
+    </tr>
+    <tr class="pronunc">
+        <th></th><td><ul>
+                <li>native equivalent:<br>Dutch <b>oe</b></li>
+        </ul></td>
+        <th></th><td><ul>
+                <li>like French <b>è</b> below, but nasal<br>similar to <b>é</b> in tamb<b>é</b>m</li>
+        </ul></td>
+    </tr>
+    <tr>
+        <th>oi</th><td><ul>
+            <li data-pre="de"><abbr title="the croissant">cr<b>oi</b>ssant</abbr></li>
+        </ul></td>
+        <th>on<td><ul>
+            <li data-pre="de"><abbr title="the macaron">macar<b>on</b></abbr></li>
+        </ul></td>
+    </tr>
+    <tr class="pronunc">
+        <th></th><td><ul>
+                <li><b>ua</b> in q<b>ua</b>tro</li>
+        </ul></td>
+        <th></th><td><ul>
+                <li><b>oa</b> in br<b>oa</b>d, but nasal<br>like <b>om</b> in c<b>om</b>partilhar</li>
+        </ul></td>
+    </tr>
+    <tr>
+        <th>ui</th><td><ul>
+            <li data-pre="de"><abbr title="the suite">s<b>ui</b>te</abbr></li>
+        </ul></td>
+        <th>é</th><td><ul>
+            <li data-pre="het"><abbr title="the café">caf<b>é</b></abbr></li>
+        </ul></td>
+    </tr>
+    <tr class="pronunc">
+        <th></th><td><ul>
+                <li><b>u</b> may be said like Dutch <b>w</b></li>
+        </ul></td>
+        <th></th><td><ul>
+                <li>native equivalent: long <b>e</b>/<b>ee</b></li>
+        </ul></td>
+    </tr>
+    <tr>
+        <th>ill</th><td><ul>
+            <li data-pre="het"><abbr title="Braille">bra<b>ill</b>e</abbr></li>
+            <li><abbr title="to monitor">surve<b>ill</b>eren</abbr></li>
+            <li data-pre="de"><abbr title="the wallet">portefeu<b>ill</b>e</abbr></li>
+            <li data-pre="de"><abbr title="the broth">bou<b>ill</b>on</abbr></li>
+        </ul></td>
+        <th><ul><li>ai</li><li>ei</li><li>ê</li><li>è</li></ul></th><td><ul>
+            <li><abbr title="binary">bin<b>ai</b>r</abbr></li>
+            <li><abbr title="beige">b<b>ei</b>ge</abbr></li>
+            <li data-pre="de"><abbr title="the survey/questionnaire">enqu<b>ê</b>te</abbr></li>
+            <li data-pre="de"><abbr title="the scene">sc<b>è</b>ne</abbr></li>
+        </ul></td>
+    </tr>
+    <tr class="pronunc">
+        <th></th><td><ul>
+                <li>native equiv.: <b>i</b> in diphthongs<br>(pronounced like <b>j</b>)</b></li>
+        </ul></td>
+        <th></th><td><ul>
+                <li>like Dutch short <b>e</b>,<br>but stretched out</li>
+        </ul></td>
+    </tr>
+    <tr>
+        <th colspan=4 style="padding-bottom:0">the ones from other languages</th>
+    </tr>
+    <tr>
+        <th colspan=2>Greco-Latin</th>
+        <th colspan=2>Germanic</th>
+    </tr>
+    <tr>
+        <th>ae</th><td><ul>
+            <li data-pre="de"><abbr title="the gynecologist">gyn<b>ae</b>coloog</abbr></li>
+            <li class="pronunc">native equivalent: long <b>e</b>/<b>ee</b></li>
+        </ul></td>
+        <th>ä</th><td><ul>
+            <li data-pre="het"><abbr title="the crispbread">kn<b>ä</b>ckebröd</abbr></li>
+            <li class="pronunc">native equivalent: short <b>e</b></li>
+        </ul></td>
+    </tr>
+    <tr>
+        <th>oe</th><td><ul>
+            <li data-pre="het"><abbr title="oestrogeen"><b>oe</b>strogeen</abbr></li>
+            <li class="pronunc">native equivalent: <b>eu</b></li>
+        </ul></td>
+        <th>ö</th><td><ul>
+            <li data-pre="de"><abbr title="the hair dryer">f<b>ö</b>hn</abbr></li>
+            <li class="pronunc">native equivalent: <b>eu</b></li>
+        </ul></td>
+    </tr>
+    <tr>
+        <th>eu<td><ul>
+            <li data-pre="de"><abbr title="the euphoria"><b>eu</b>forie</abbr></li>
+            <li class="pronunc">native equivalent: <b>ui</b></li>
+        </ul></td>
+        <th>ü</th><td><ul>
+            <li><abbr title="at all, in the first place"><b>ü</b>berhaupt</abbr></li>
+            <li class="pronunc">native equivalent: long <b>u</b>/<b>uu</b></li>
+        </ul></td>
+    </tr>
+</table>
+</body>
+</html>
