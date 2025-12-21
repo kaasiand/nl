@@ -1,16 +1,12 @@
 <style>
 @font-face {
     font-family: "pretext";
-    src: url("Pretext-VF.ttf");
+    src: url("Pretext-Regular.ttf");
 }
 @font-face {
-    font-family: "Geoform";
-    src: url("Geoform.otf");
-}
-@font-face {
-    font-family: "Geoform";
+    font-family: "pretext";
     font-weight: bold;
-    src: url("Geoform-Bold.otf");
+    src: url("Pretext-Bold.ttf");
 }
 
 table {
@@ -66,8 +62,8 @@ html {
     </tr>
     <tr>
         <th>a.u.b.<br>ajb<br>s.v.p.</th>
-        <td><b>a</b>lst<b>u</b><b>b</b>lieft<br><b>a</b>ls<b>j</b>e<b>b</b>lieft<br><b>s</b>'il <b>v</b>ous <b>p</b>laît</td>
-        <td>please<br><small class="transp">(the abbreviation is not often used for the other<br>"here you go; take this" meaning of alstublieft/alsjeblieft)</small></td>
+        <td><b>a</b>lst<b>u</b><b>b</b>lieft<br><b>a</b>ls<b>j</b>e<b>b</b>lieft<br><small>🇫🇷</small> <b>s</b>'il <b>v</b>ous <b>p</b>laît</td>
+        <td>please<br><small>(the abbreviation is not often used for the other<br>"here you go; take this" meaning of alstublieft/alsjeblieft)</small></td>
     </tr>
     <tr>
         <th>i.p.v.</th>
@@ -130,6 +126,11 @@ html {
         <td>for example; e.g.</td>
     </tr>
     <tr>
+        <th>vgl.</th>
+        <td><b>v</b>er<b>g</b>e<b>l</b>ijk</td>
+        <td>compare; cf.</td>
+    </tr>
+    <tr>
         <th>o.a.</th>
         <td><b>o</b>nder <b>a</b>ndere</td>
         <td>among others</td>
@@ -140,9 +141,14 @@ html {
         <td>or something like that</td>
     </tr>
     <tr>
+        <th>m.a.w.</th>
+        <td><b>m</b>et <b>a</b>ndere <b>w</b>oorden</td>
+        <td>in other words</td>
+    </tr>
+    <tr>
         <th>a.s.</th>
         <td><b>a</b>an<b>s</b>taande</td>
-        <td>next; future <small class="transp">(example: <i>aanstaande dinsdag</i> – next Tuesday)</small></td>
+        <td>next; future<br><small>(example: <i>aanstaande dinsdag</i> – next Tuesday)</small></td>
     </tr>
     <tr>
         <th>z.s.m.</th>
@@ -160,7 +166,7 @@ html {
     <tr>
         <th>'s</th>
         <td><span class="transp">de<b>s</b></span></td>
-        <td><span class="transp">(archaic)</span> of the; in the<br><small class="transp">no longer interchangeable in modern-day language.<br>only still common in some fixed constructions, such as<br><b>'s morgens</b> "in the morning",  <b>... des doods</b> "... of death"</small></td>
+        <td><span class="transp">(archaic)</span> of the; in the<br><small>no longer interchangeable in modern-day language.<br>only still common in some fixed constructions, such as<br><b>'s morgens</b> "in the morning",  <b>... des doods</b> "... of death"</small></td>
     </tr>
     <tr>
         <th>'t</th>
@@ -170,7 +176,7 @@ html {
     <tr>
         <th>'n</th>
         <td>ee<b>n</b></td>
-        <td>a; an <small class="transp">(not used when pronounced like <b>één</b>; meaning "one")</small></td>
+        <td>a; an <small>(not used when pronounced like <b>één</b>; meaning "one")</small></td>
     </tr>
     <tr>
         <th>'k</th>
@@ -185,27 +191,27 @@ html {
     <tr>
         <th>z'n</th>
         <td><b>z</b>ij<b>n</b></td>
-        <td>his; its <small class="transp">(never used for the verb <b>zijn</b> "to be")</small></td>
+        <td>his; its <small>(never used for the verb <b>zijn</b> "to be")</small></td>
     </tr>
     <tr>
         <th>-ie</th>
         <td>h<b>ij</b></td>
-        <td>he <small class="transp">(only if it comes after the verb; gets attached to its end)</small></td>
+        <td>he <small>(only if it comes after the verb; gets attached to its end)</small></td>
     </tr>
     <tr>
         <th>d'r</th>
         <td>haa<b>r</b><br>e<b>r</b></td>
-        <td>her <small class="transp">(never used for the noun <b>haar</b> "hair")</small><br>there</td>
+        <td>her <small>(never used for the noun <b>haar</b> "hair")</small><br>there</td>
     </tr>
     <tr>
-        <th>'<span class="transp">(n)</span>s<br>es</th>
+        <th>'s / 'ns<br>es / is</th>
         <td>ee<b>ns</b></td>
-        <td><small class="transp">(literally, when stressed: "once"; the unstressed form is used to<br>soften imperatives and is usually left untranslated in English.<br>Example: <i>Probeer dit eens! / Probeer dit 's!</i> – "Try this!")</small></td>
+        <td><small>(related to English "once"; the unstressed form is used to<br>soften imperatives and is usually left untranslated in English.<br>Example: <i>Probeer dit eens! / Probeer dit 's!</i> – "Try this!")</small></td>
     </tr>
     <tr>
         <th>effe<br>ff</th>
         <td>even</td>
-        <td><small class="transp">(literally "briefly"; often used like English "for a sec/moment"<br>but commonly left untranslated in English too.<br>Example: <i>Kun je even opzij?</i> – "Could you move aside for a sec?")</small></td>
+        <td><small>(literally "briefly"; often used like English "for a sec/moment"<br>but so common it's often left untranslated in English too.<br>Example: <i>Kun je even opzij?</i> – "Could you move aside for a sec?")</small></td>
     </tr>
     <tr>
         <th colspan=3>text messaging abbreviations</th>
@@ -261,7 +267,7 @@ html {
         <td>oh my god</td>
     </tr>
     <tr>
-        <th>kk</th>
+        <th>kk<span class="transp">(r)</span></th>
         <td><b>k</b>an<b>k</b>er</td>
         <td><span class="transp">(vulgar)</span> fuck; shit <small class="transp">(literally: cancer)</small></td>
     </tr>
@@ -302,7 +308,7 @@ html {
     </tr>
     <tr>
         <th><small class="transp">de </small>Benelux</th>
-        <td colspan=2><b>Be</b>lgië, <b>Ne</b>derland <abbr title="and">en</abbr> <b>Lux</b>emburg</td>
+        <td colspan=2><b>Be</b>lgië, <b>Ne</b>derland, <b>Lux</b>emburg</td>
     </tr>
     <tr>
         <th>NH</th>
@@ -320,15 +326,23 @@ html {
         <td><span class="transp">(province)</span> North Brabant</td>
     </tr>
     <tr>
+        <th>A'dam</th>
+        <td colspan=2><b>A</b>mster<b>dam</b></td>
+    </tr>
+    <tr>
+        <th>R'dam</th>
+        <td colspan=2><b>R</b>otter<b>dam</b></td>
+    </tr>
+    <tr>
         <th colspan=3>other</th>
     </tr>
     <tr>
-        <th>NS</th>
+        <th><small class="transp">de </small>NS</th>
         <td><b>N</b>ederlandse <b>S</b>poorwegen</td>
         <td>main Dutch railway operator</td>
     </tr>
     <tr>
-        <th>IC</th>
+        <th><small class="transp">de </small>IC</th>
         <td><b>i</b>nter<b>c</b>ity<span class="transp">(trein)</span><br><b>i</b>ntensive <b>c</b>are</td>
     </tr>
 </table>
