@@ -16,6 +16,7 @@
     }
     #paragraphs {
         font-size: 1.8rem;
+        flex: 50;
     }
 }
 
@@ -30,7 +31,7 @@
 }
 
 table {
-    font-size: 1.35rem;
+    font-size: 1.3rem;
     border-collapse: collapse;
     white-space: nowrap;
 }
@@ -44,7 +45,7 @@ table {
     }
     & p.note { 
         margin-top: -0.4rem;
-        font-size: 70%;
+        font-size: 75%;
     }
     
     & td,th {
@@ -66,14 +67,14 @@ table {
         font-size: 130%;
     }
     .maincol.article {
-        padding: 4px 4px 0 10px;
+        padding: 4px 4px 0 5px;
         font-size: 80%;
     }
     .article {
-        font-size: 70%;
+        font-size: 80%;
         color: #0006;
         text-align: right;
-        padding: 3px 2px 1px 5px;
+        padding: 2px 2px 2px 5px;
     }
     .section {
         border-top: 12px solid transparent;
@@ -104,7 +105,7 @@ body {
         flex: 60;
     }
     #paragraphs {
-        flex: 30;
+        flex: 35;
     }
 }
 
@@ -214,23 +215,27 @@ function populateTable(id) {
 
 wordlist = {
 "human":[
-{ pt: ["o","(ser) hum[a]no","","humaninho","","humanão"],     nl: ["de","m[e]ns","","mensen","","mensje"], section: true },
-{ pt: ["Ø|as","g[e]nte|pess[o]as","","","",""],                      nl: ["de","m[e]n·sen","","","de","mensjes"] },
-{ pt: ["a","pess[o]a","","pessoinha","","pessoazona"],                      nl: ["de","per·s[oo]n","","personen","","persoontje"] },
-{ pt: ["o","h[o]mem","","hom(enz)inho","","homenz(arr)ão"],                      nl: ["de","m[a]n","","mannen","","mannetje¦also: male animal"] },
-{ pt: ["a","mulh[e]r","","mulher(z)inha","a|{Ro}","mulherona|mulherão"],                      nl: ["de","vr[ouw]","","vrouwen","","vrouwtje¦also: female animal"] },
-{ pt: ["a","cri[a]nça","","criancinha","a|{Ro}","criançona|crianção"],                      nl: ["het","k[i]nd","","kind{Ber}en","het|de","kindje|kind{Ber}tjes"] },
-{ pt: ["o","men[i]no","","menininho","","meninão"],                      nl: ["de","j[o]ngen","","jongens","","jong{Betje}"] },
-{ pt: ["a","men[i]na","","menininha","","meninona"],                      nl: ["{Rhet}","m[ei]sje","","meisjes","",""] },
+{ pt: ["o","(ser) hum[a]no","","humaninho","","humanão"],               nl: ["de","m[e]ns","","mensen","","mensje"], section: true },
+{ pt: ["Ø|as","g[e]nte|pess[o]as","","","",""],                         nl: ["de","m[e]n·sen","","","de","mensjes"] },
+{ pt: ["a","pess[o]a","","pessoinha","","pessoazona"],                  nl: ["de","per·s[oo]n","","personen","","persoontje"] },
+{ pt: ["o","h[o]mem","","hom(enz)inho","","homenz(arr)ão"],             nl: ["de","m[a]n","","mannen","","mannetje¦also: male animal"] },
+{ pt: ["a","mulh[e]r","","mulher(z)inha","a|{Ro}","mulherona|mulherão"],nl: ["de","vr[ouw]","","vrouwen","","vrouwtje¦also: female animal"] },
+{ pt: ["a","cri[a]nça","","criancinha","a|{Ro}","criançona|crianção"],  nl: ["het","k[i]nd","","kind{Ber}en","het|de","kindje|kind{Ber}tjes"] },
+{ pt: ["o","men[i]no","","menininho","","meninão"],                     nl: ["de","j[o]ngen","","jongens","","jong{Betje}"] },
+{ pt: ["a","men[i]na","","menininha","","meninona"],                    nl: ["{Rhet}","m[ei]sje","","meisjes","",""] },
 
-{ pt: ["o","c[To]rpo","","corpinho","","corpão"],       nl: ["het","l[i]chaam","","lichamen","","lichaampje"], section: true },
-{ pt: ["a","cab[e]ça","","cabecinha","","cabeçona"],    nl: ["het","h[oo]fd","","hoofden","","hoofdje"] },
-{ pt: ["o","[To]lho","","olhinho","","olhão"],          nl: ["het","[oo]g","","ogen","","oogje"] },
-{ pt: ["a","or[e]lha","","orelhinha","{Ro}","orelhão"],    nl: ["het","[oo]r","","oren","","oortje"] },
-{ pt: ["o","ouv[i]do","","ouvidinho","","ouvidão"],     nl: ["het|het","[oo]r·(gat) _👂_|gₑ·h[oo]r _🧏_","","oorg{Ra}ten|Ø","","oorg{Raa}tje|Ø"] },
-{ pt: ["o","nar[i]z","","narizinho","","narigão"],      nl: ["de","n[eu]s","","neuzen","","neusje"] },
-{ pt: ["o","br[a]ço","","bracinho","","bração"],        nl: ["de","[a]rm","","armen","","armpje"] },
-{ pt: ["a","p[e]rna","","perninha","{Ro}","pernão"],        nl: ["het","b[ee]n","","benen","","beentje"] },
+{ pt: ["o","c[To]rpo","","corpinho","","corpão"],               nl: ["het","l[i]chaam","","lichamen","","lichaampje"], section: true },
+{ pt: ["a","cab[e]ça","","cabecinha","","cabeçona"],            nl: ["het","h[oo]fd","","hoofden","","hoofdje"] },
+{ pt: ["o","[To]lho","","olhinho","","olhão"],                  nl: ["het","[oo]g","","ogen","","oogje"] },
+{ pt: ["a","or[e]lha","","orelhinha","{Ro}","orelhão"],         nl: ["het","[oo]r","","oren","","oortje"] },
+{ pt: ["o","ouv[i]do","","ouvidinho","","ouvidão"],             nl: ["het|het","[oo]r·(gat) _👂_|gₑ·h[oo]r _🧏_","","oorg{Ra}ten|Ø","","oorg{Raa}tje|Ø"] },
+{ pt: ["o","nar[i]z","","narizinho","","narigão"],              nl: ["de","n[eu]s","","neuzen","","neusje"] },
+{ pt: ["o","br[a]ço","","bracinho","","bração"],                nl: ["de","[a]rm","","armen","","armpje"] },
+{ pt: ["a","p[e]rna","","perninha","{Ro}","pernão"],            nl: ["het","b[ee]n","","benen","","beentje"] },
+{ pt: ["a|o","barr[i]ga|abd[ô]men","","","",""],                nl: ["de","b[ui]k","","buiken","","buikje"] },
+{ pt: ["as","c[ɔ]stas","","","",""],                            nl: ["de","r[u]g","","ruggen","","rugje"] },
+{ pt: ["a","n[á]dega","","nadeguinha","","nadegona"],             nl: ["de","b[i]l","","billen","","billetje"] },
+{ pt: ["a","b[u]nda","","bundinha","a|{Ro}","bundona|bundão"],    nl: ["de","k[o]nt","","konten","","kontje"] },
 
 { pt: ["a","m[ão]","","mãozinha|mãozita","","mãozona"], nl: ["de","h[a]nd","","handen","","handje"], section: true  },
 { pt: ["o","p[u]lso","","pulsinho","","pulsão"],        nl: ["de","p[o]ls","","polsen","","polsje"] },
@@ -247,7 +252,7 @@ wordlist = {
 { pt: ["o","ded[ão]_ {T(do pé)}_","","dedãozinho","","dedãozão"],        nl: ["de","gr[o]·te t[ee]n","","grote tenen","","grote teentje"] },
 { pt: ["o","ded[i]nho_ {T(do pé)}_","","","",""],        nl: ["de","kl[ei]·ne t[ee]n","","kleine tenen","","kleine teentje"] },
 { pt: ["o","tornoz[e]lo","","tornozelinho","","tornozelão"],        nl: ["de","[e]n·kel","","enkels","","enkeltje"] },
-{ pt: ["a|a","pl[a]nta do p[é]|s[ɔ]la","","Ø|solinha","","Ø|solona"],        nl: ["de","(v[oe]t)·zool","","zolen|voetzolen","","zooltje|voetzooltje"] },
+{ pt: ["a|a","pl[a]nta do p[é]|s[ɔ]la","","Ø|solinha","","Ø|solona"],        nl: ["de","(v[oe]t)·zool","","(voet)zolen","","(voet)zooltje"] },
 ],
 
 "shape":[
@@ -308,7 +313,7 @@ wordlist = {
 </table>
 </div>
 <div id="paragraphs">
-    <h1>Nouns</h1>
+    <h1>Nouns: the basics</h1>
     <p>Traditionally, Dutch has three grammatical genders: masculine, feminine and neuter. However, like in Swedish and Danish, the distinction between the masculine and feminine genders has largely disappeared in Dutch (except in the south). In practice, it's fine if you <b>treat Dutch as having only two grammatical genders: <i>common</i>&nbsp;(m&NoBreak;/&NoBreak;f)&nbsp;and&nbsp;<i>neuter.</i></b></p>
     <p>Those actual names aren't too important. In Dutch we often just call them <b><i>de&#8209;woorden</i></b> and <i><b>het&#8209;woorden</b>,</i> after the definite article they use. The indefinite article is always (unstressed) <i>een,</i> and is not used with&nbsp;plurals.</p>
     <p>Most plurals are formed with either <i>&#8209;en</i> or <i>&#8209;s.</i> <b>Without exception, plurals always work like <i>de</i>&nbsp;words.</b></p>
@@ -323,7 +328,7 @@ wordlist = {
 
     <h2><a href="">Diminutives</a></h2>
 
-    <p>Most nouns in Dutch can be turned into diminutives, typically ending in <i><b>&#8209;</i>(<i>t</i>&#x200a;)&NoBreak;<i>&NoBreak;&#x200a;&NoBreak;je</b>.</i> In the south and in female given names, <i>&#8209;ke</i> often occurs too. With the exception of given names, <b>diminutives are always neuter</b> and thus take the definite article <i>het</i> in the singular. The plurals of diminutives are always formed with&nbsp;<i>&#8209;s.</i></p>
+    <p>Most nouns in Dutch can be turned into diminutives, typically ending in <i><b>&#8209;</i>(<i>t</i>&#x200a;)&NoBreak;<i>&NoBreak;&#x200a;&NoBreak;je</b>.</i> In the south and in female given names, <i>&#8209;ke</i> often occurs too. With the exception of given names, <b>diminutives are always&nbsp;neuter</b> and thus take the definite article <i>het</i> in the singular. The plurals of diminutives are always formed with&nbsp;<i>&#8209;s.</i></p>
 
     <table>
         <tr><th></th><th colspan=2>regular</th><th colspan=2>diminutive</th></tr>
@@ -331,12 +336,12 @@ wordlist = {
         <tr><th>plural</th><td class="article">de</td><td>handen</td><td class="article">de</td><td>handjes</td></tr>
     </table>
 
-    <p>Some words may undergo a vowel change or lengthening in plural and/or diminutive forms (<i>schip</i>&nbsp;&rarr;&nbsp;<i>schepen/&NoBreak;scheepje;</i> <i>ion</i>&nbsp;&rarr;&nbsp;<i>ionen</i>&NoBreak;&#x200a;&NoBreak;).</p>
+    <p>Some words may undergo a vowel change or lengthening in plural and/or diminutive forms (<i>schip</i>&nbsp;&rarr;&nbsp;<i>sch<span class="red">e</span>pen/&NoBreak;sch<span class="red">ee</span>pje;</i> <i>factor</i>&nbsp;&rarr;&nbsp;<i>fact<span class="red">o</span>ren</i>&NoBreak;&#x200a;&NoBreak;).</p>
 
     <h2><a href="">Compounds</a></h2>
 
     <p>Compound nouns are generally written as single words in Dutch, though you'll often see people write them separately (due to English influence; possibly also web searchability). <b>The&nbsp;grammatical gender of a compound is the same as that of its last&nbsp;part.</b></p>
-    <p>Unusual compounds may optionally be written with a hyphen in between, for legibility. The hyphen is required for compounds with initialisms (<i>wc-papier</i>), and compounds with vowels in the middle that might be misread as a diphthong (<i>vanille-extract,</i> but <i>vanillearoma</i>).</p>
+    <p>Unusual compounds may optionally be written with a hyphen in between, for legibility. A hyphen is required for compounds with initialisms (<i>wc-papier</i>), and compounds which juxtapose vowels that might be misread as a different vowel or diphthong (<i>vanille-extract,</i> but&nbsp;<i>vanillearoma</i>).</p>
 
     <table>
         <tr><th style="display:none"></th><th colspan=2>English</th><th colspan=2>Dutch</th></tr>
