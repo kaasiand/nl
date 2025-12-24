@@ -6,17 +6,18 @@
 
 @media screen and (orientation: portrait) {
     html {
-        font-size: 24pt !important;
+        font-size: 20pt !important;
     }
-    #translation tr>.hideNarrow {
-        display: none;
+    .translation {
+        .hideNarrow {
+            display: none !important;
+        }
     }
     #cont {
         flex-direction: column !important;
     }
     #paragraphs {
-        font-size: 1.8rem;
-        flex: 50;
+        flex: 50 !important;
     }
 }
 
@@ -229,7 +230,7 @@ nav.breadcrumbs {
 
 <table class="translation" id="table_numerals">
     <tr>
-        <th class="pt"><abbr title="o numeral ordinal">ordinal</abbr></th>
+        <th class="pt hideNarrow"><abbr title="o numeral ordinal">ordinal</abbr></th>
         <th class="pt maincol">português</th><th class="nl maincol">Nederlands</th>
         <th class="nl"><abbr title="het rangtelwoord">ordinal</abbr></th>
         <th class="nl"><i>-en</i> form</th>
@@ -237,8 +238,8 @@ nav.breadcrumbs {
 </table>
 <table class="translation" id="table_nouns">
     <tr>
-        <th colspan=2 class="pt"><abbr title="o diminutivo">diminutive</abbr></th>
-        <th colspan=2 class="pt"><abbr title="o aumentativo">augmentative</abbr></th>
+        <th colspan=2 class="pt hideNarrow"><abbr title="o diminutivo">diminutive</abbr></th>
+        <th colspan=2 class="pt hideNarrow"><abbr title="o aumentativo">augmentative</abbr></th>
         <th colspan=2 class="pt maincol">português</th><th colspan=2 class="nl maincol">Nederlands</th>
         <th colspan=1 class="nl"><abbr title="het meervoud">plural</abbr> {T(de)}</th>
         <th colspan=2 class="nl"><abbr title="het verkleinwoord">diminutive</abbr> {T(het)}</th>
