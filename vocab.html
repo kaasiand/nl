@@ -8,7 +8,7 @@
     html {
         font-size: 24pt !important;
     }
-    #translation tr>.pt:not(.maincol) {
+    #translation tr>.hideNarrow {
         display: none;
     }
     #cont {
@@ -36,12 +36,12 @@ table {
     white-space: nowrap;
 }
 
-#translation {
-    width: calc(100% - 20px);
-    margin: 10px 10px;
+.translation {
+    width: 100%;
+    margin-top: 10px;
 
     & th {
-        padding: 15px 0 15px !important;
+        padding: 15px 10px 15px 0 !important;
     }
     & p.note { 
         margin-top: -0.4rem;
@@ -50,8 +50,14 @@ table {
     
     & td,th {
         vertical-align: center;
-        padding: 2px;
+        padding: 0 5px 0 0;
         line-height: calc(1.5rem * 0.9);
+
+        & small {
+        display: inline-block;
+        font-size: 80%;
+        transform: scaleY(calc(1 / 0.8));
+        }
 
         >div {
             padding: 4px 0;
@@ -65,16 +71,25 @@ table {
 
     .maincol:not(.article) {
         font-size: 130%;
+        & small {
+            font-size: 65%;
+            transform: none;
+        }
+        & p.note { 
+            font-size: 65%;
+        }
     }
     .maincol.article {
-        padding: 4px 4px 0 5px;
-        font-size: 80%;
+        padding: 4px 5px 0 0;
+    }
+    :not(.maincol) + .maincol, .maincol + :not(.maincol), tr>:first-child {
+        padding-left: 7px;
     }
     .article {
-        font-size: 80%;
+        font-size: 75%;
         color: #0006;
         text-align: right;
-        padding: 2px 2px 2px 5px;
+        padding: 3px 4px 1px 0;
     }
     .section {
         border-top: 12px solid transparent;
@@ -103,6 +118,7 @@ body {
     >div {
         overflow-y: auto;
         flex: 60;
+        padding: 10px;
     }
     #paragraphs {
         flex: 35;
@@ -110,8 +126,8 @@ body {
 }
 
 #paragraphs {
-    padding: 20px;
-    box-sizing: border-box;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
     font-size: 1.5rem;
     line-height: 1.25rem;
     white-space: auto;
@@ -160,128 +176,71 @@ body {
 
 .red { color: #c00 }
 .blue { color: #04f }
+.green { color: #080 }
 
 s { opacity: 0.5; text-decoration: none; }
 .transp { opacity: 0.5 }
-i { margin-left: -1px; }
+i { margin-left: -1px; padding-right: 1px; }
+.hidden { display: none }
+
+nav.breadcrumbs {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    gap: 9px;
+    font-size: 1.5rem;
+    padding: 12px 10px 0px;
+
+    > div {
+        display: block;
+        &:not(:last-child)::after {
+            content: "→";
+            padding-left: 8px;
+            font-weight: normal;
+        }
+        &:first-child {
+            font-weight: bold;
+        }
+    }
+    #paragraphs & {
+        padding-left: 0;
+        padding-bottom: 5px;
+    }
+}
+* {
+    box-sizing: border-box;
+}
 
 </style>
 <script src="format.js"></script>
-<script>
-function init() {
-    populateTable("human");
-    formatElement("translation");
-}
-
-function populateTable(id) {
-    for (let i = 0; i < wordlist[id].length; i++) {
-        let tr = document.createElement("tr");
-
-        let td_pt_dim_art = document.createElement("td"), td_pt_dim = document.createElement("td");
-        let td_pt_aug_art = document.createElement("td"), td_pt_aug = document.createElement("td");
-        let td_pt_art     = document.createElement("td"), td_pt     = document.createElement("td");
-        let td_nl_dim_art = document.createElement("td"), td_nl_dim = document.createElement("td");
-        let td_nl_pl_art  = document.createElement("td"), td_nl_pl  = document.createElement("td");
-        let td_nl_art     = document.createElement("td"), td_nl     = document.createElement("td");
-        tr.appendChild(td_pt_dim_art); tr.appendChild(td_pt_dim); tr.appendChild(td_pt_aug_art); tr.appendChild(td_pt_aug);
-        tr.appendChild(td_pt_art);     tr.appendChild(td_pt);     tr.appendChild(td_nl_art);     tr.appendChild(td_nl);
-        tr.appendChild(td_nl_pl_art);  tr.appendChild(td_nl_pl);  tr.appendChild(td_nl_dim_art); tr.appendChild(td_nl_dim);
-
-        if ("section" in wordlist[id][i]) tr.classList.add("section");
-        td_pt_dim_art.classList.add("article","pt");       td_pt_aug_art.classList.add("article","pt");
-        td_pt_dim    .classList.add(          "pt");       td_pt_aug    .classList.add(          "pt");
-        td_pt_art.classList.add("article","maincol","pt"); td_nl_art.classList.add("article","maincol","nl");
-        td_pt        .classList.add("maincol","pt");       td_nl        .classList.add("maincol","nl");
-        td_nl_dim_art.classList.add("article","nl");       td_nl_pl_art .classList.add("article","nl");
-        td_nl_dim    .classList.add(          "nl");       td_nl_pl     .classList.add(          "nl");
-
-        td_pt_art    .innerHTML = "<div><p>" + formatLine(wordlist[id][i].pt[0]) + "</p></div>";
-        td_pt        .innerHTML = "<div><p>" + formatLine(wordlist[id][i].pt[1]) + "</p></div>";
-        td_pt_dim_art.innerHTML = "<div><p>" + formatLine(wordlist[id][i].pt[2]) + "</p></div>";
-        td_pt_dim    .innerHTML = "<div><p>" + formatLine(wordlist[id][i].pt[3]) + "</p></div>";
-        td_pt_aug_art.innerHTML = "<div><p>" + formatLine(wordlist[id][i].pt[4]) + "</p></div>";
-        td_pt_aug    .innerHTML = "<div><p>" + formatLine(wordlist[id][i].pt[5]) + "</p></div>";
-
-        td_nl_art    .innerHTML = "<div><p>" + formatLine(wordlist[id][i].nl[0]) + "</p></div>";
-        td_nl        .innerHTML = "<div><p>" + formatLine(wordlist[id][i].nl[1]) + "</p></div>";
-        td_nl_pl_art .innerHTML = "<div><p>" + formatLine(wordlist[id][i].nl[2]) + "</p></div>";
-        td_nl_pl     .innerHTML = "<div><p>" + formatLine(wordlist[id][i].nl[3]) + "</p></div>";
-        td_nl_dim_art.innerHTML = "<div><p>" + formatLine(wordlist[id][i].nl[4]) + "</p></div>";
-        td_nl_dim    .innerHTML = "<div><p>" + formatLine(wordlist[id][i].nl[5]) + "</p></div>";
-
-        document.querySelector("#translation tbody").appendChild(tr);
-    }
-}
-
-wordlist = {
-"human":[
-{ pt: ["o","(ser) hum[a]no","","humaninho","","humanão"],               nl: ["de","m[e]ns","","mensen","","mensje"], section: true },
-{ pt: ["Ø|as","g[e]nte|pess[o]as","","","",""],                         nl: ["de","m[e]n·sen","","","de","mensjes"] },
-{ pt: ["a","pess[o]a","","pessoinha","","pessoazona"],                  nl: ["de","per·s[oo]n","","personen","","persoontje"] },
-{ pt: ["o","h[o]mem","","hom(enz)inho","","homenz(arr)ão"],             nl: ["de","m[a]n","","mannen","","mannetje¦also: male animal"] },
-{ pt: ["a","mulh[e]r","","mulher(z)inha","a|{Ro}","mulherona|mulherão"],nl: ["de","vr[ouw]","","vrouwen","","vrouwtje¦also: female animal"] },
-{ pt: ["a","cri[a]nça","","criancinha","a|{Ro}","criançona|crianção"],  nl: ["het","k[i]nd","","kind{Ber}en","het|de","kindje|kind{Ber}tjes"] },
-{ pt: ["o","men[i]no","","menininho","","meninão"],                     nl: ["de","j[o]ngen","","jongens","","jong{Betje}"] },
-{ pt: ["a","men[i]na","","menininha","","meninona"],                    nl: ["{Rhet}","m[ei]sje","","meisjes","",""] },
-
-{ pt: ["o","c[To]rpo","","corpinho","","corpão"],               nl: ["het","l[i]chaam","","lichamen","","lichaampje"], section: true },
-{ pt: ["a","cab[e]ça","","cabecinha","","cabeçona"],            nl: ["het","h[oo]fd","","hoofden","","hoofdje"] },
-{ pt: ["o","[To]lho","","olhinho","","olhão"],                  nl: ["het","[oo]g","","ogen","","oogje"] },
-{ pt: ["a","or[e]lha","","orelhinha","{Ro}","orelhão"],         nl: ["het","[oo]r","","oren","","oortje"] },
-{ pt: ["o","ouv[i]do","","ouvidinho","","ouvidão"],             nl: ["het|het","[oo]r·(gat) _👂_|gₑ·h[oo]r _🧏_","","oorg{Ra}ten|Ø","","oorg{Raa}tje|Ø"] },
-{ pt: ["o","nar[i]z","","narizinho","","narigão"],              nl: ["de","n[eu]s","","neuzen","","neusje"] },
-{ pt: ["o","br[a]ço","","bracinho","","bração"],                nl: ["de","[a]rm","","armen","","armpje"] },
-{ pt: ["a","p[e]rna","","perninha","{Ro}","pernão"],            nl: ["het","b[ee]n","","benen","","beentje"] },
-{ pt: ["a|o","barr[i]ga|abd[ô]men","","","",""],                nl: ["de","b[ui]k","","buiken","","buikje"] },
-{ pt: ["as","c[ɔ]stas","","","",""],                            nl: ["de","r[u]g","","ruggen","","rugje"] },
-{ pt: ["a","n[á]dega","","nadeguinha","","nadegona"],             nl: ["de","b[i]l","","billen","","billetje"] },
-{ pt: ["a","b[u]nda","","bundinha","a|{Ro}","bundona|bundão"],    nl: ["de","k[o]nt","","konten","","kontje"] },
-
-{ pt: ["a","m[ão]","","mãozinha|mãozita","","mãozona"], nl: ["de","h[a]nd","","handen","","handje"], section: true  },
-{ pt: ["o","p[u]lso","","pulsinho","","pulsão"],        nl: ["de","p[o]ls","","polsen","","polsje"] },
-{ pt: ["o","p[u]nho","","punhinho","","punhão"],        nl: ["de","v[ui]st","","vuisten","","vuistje"] },
-{ pt: ["o","d[e]do_ {T(da mão)}_","","dedinho","","dedão"],        nl: ["de","v[i]nger","","vingers","","vingertje"] },
-{ pt: ["o|o","ded[ão]_ {T(da mão)}_|_(d[e]do) _poleg[a]r","","dedãozinho|Ø","","dedãozão|Ø"],        nl: ["de","d[ui]m","","duimen","","duimpje"] },
-{ pt: ["o","_(d[e]do) _indicad[o]r","","","",""],        nl: ["de","w[ij]s·_vinger_","","wijsvingers","","wijsvingertje"] },
-{ pt: ["o","_d[e]do _m[é]dio","","","",""],        nl: ["de","m[i]d·del·_vinger_","","middelvingers","","middelvingertje"] },
-{ pt: ["o|o","_(d[e]do) _anul[a]r|_(d[e]do) _anel[a]r","","","",""],        nl: ["de","r[i]ng·_vinger_","","ringvingers","","ringvingertje"] },
-{ pt: ["o","ded[i]nho_ {T(da mão)}_","","","",""],        nl: ["de","p[i]nk","","pinken","","pinkje"] },
-
-{ pt: ["o","p[é]","","pezinho","","pezão"],             nl: ["de","v[oe]t","","voeten","","voetje"], section: true  },
-{ pt: ["o","d[e]do_ {T(do pé)}_","","dedinho","","dedão"],        nl: ["de","t[ee]n","","tenen","","teentje"] },
-{ pt: ["o","ded[ão]_ {T(do pé)}_","","dedãozinho","","dedãozão"],        nl: ["de","gr[o]·te t[ee]n","","grote tenen","","grote teentje"] },
-{ pt: ["o","ded[i]nho_ {T(do pé)}_","","","",""],        nl: ["de","kl[ei]·ne t[ee]n","","kleine tenen","","kleine teentje"] },
-{ pt: ["o","tornoz[e]lo","","tornozelinho","","tornozelão"],        nl: ["de","[e]n·kel","","enkels","","enkeltje"] },
-{ pt: ["a|a","pl[a]nta do p[é]|s[ɔ]la","","Ø|solinha","","Ø|solona"],        nl: ["de","(v[oe]t)·zool","","(voet)zolen","","(voet)zooltje"] },
-],
-
-"shape":[
-{ pt: ["a","f[ɔ]rma","","forminha","","formona"],      nl: ["de","v[o]rm","","vormen","","vormpje"], section: true },
-{ pt: ["o|a","c[í]rculo|r[ɔ]da","","circulinho|rodinha","","circulão|rodona"],  nl: ["de|de|het","c[i]r·kₑl|kr[i]ng|r[o]nd·je","","cirkels|kringen|rondjes","","cirkeltje|kringetje|Ø"] },
-{ pt: ["o","quadr[a]do","","quadradinho","","quadradão"],     nl: ["het","v[ie]r·kant","","vierkanten","","vierkantje"] },
-{ pt: ["o","ret[â]ngulo","","retangulinho","","retangulão"],     nl: ["de","r[e]cht·hoek","","rechthoeken","","rechthoekje"] },
-{ pt: ["o","tri[â]ngulo","","triangulinho","","triangulão"],     nl: ["de","dr[ie]·hoek","","driehoeken","","driehoekje"] },
-{ pt: ["o","he{Bx}[á]gono","","hexagoninho","","hexagonão"],     nl: ["de","z[e]s·hoek","","zeshoeken","","zeshoekje"] },
-{ pt: ["o","c[u]bo","","cubinho","","cubão"],     nl: ["de","k[u]·bus","","kubussen","","kubusje"] },
-{ pt: ["o","c[u]bo de g[e]lo","","cubinho de gelo","","cubão de gelo"],     nl: ["het|het","[ij]s·klont·je|[ij]s·blok·je","","ijsklontjes|ijsblokjes","",""] },
-]
-};
-
-</script>
 </head>
 <body onload="init()">
 <nav>
-
 </nav>
 
 <div id="cont">
 <div>
-<table id="translation">
+
+<nav class="breadcrumbs">
+<div>Vocabulary</div>
+<div>Quantities</div>
+<div>Numerals</div>
+</nav>
+
+<table class="translation" id="table_numerals">
+    <tr>
+        <th class="pt"><abbr title="o numeral ordinal">ordinal</abbr></th>
+        <th class="pt maincol">português</th><th class="nl maincol">Nederlands</th>
+        <th class="nl"><abbr title="het rangtelwoord">ordinal</abbr></th>
+        <th class="nl"><i>-en</i> form</th>
+    </tr>
+</table>
+<table class="translation" id="table_nouns">
     <tr>
         <th colspan=2 class="pt"><abbr title="o diminutivo">diminutive</abbr></th>
         <th colspan=2 class="pt"><abbr title="o aumentativo">augmentative</abbr></th>
         <th colspan=2 class="pt maincol">português</th><th colspan=2 class="nl maincol">Nederlands</th>
-        <th colspan=2 class="nl"><abbr title="het meervoud">plural</abbr> {T(de)}</th>
+        <th colspan=1 class="nl"><abbr title="het meervoud">plural</abbr> {T(de)}</th>
         <th colspan=2 class="nl"><abbr title="het verkleinwoord">diminutive</abbr> {T(het)}</th>
 <!--
 
@@ -313,9 +272,16 @@ wordlist = {
 </table>
 </div>
 <div id="paragraphs">
-    <h1>Nouns: the basics</h1>
+
+<nav class="breadcrumbs">
+<div>Grammar</div>
+<div>Nouns</div>
+<div>Introduction</div>
+</nav>
+
+    <h1>Introduction to Nouns</h1>
     <p>Traditionally, Dutch has three grammatical genders: masculine, feminine and neuter. However, like in Swedish and Danish, the distinction between the masculine and feminine genders has largely disappeared in Dutch (except in the south). In practice, it's fine if you <b>treat Dutch as having only two grammatical genders: <i>common</i>&nbsp;(m&NoBreak;/&NoBreak;f)&nbsp;and&nbsp;<i>neuter.</i></b></p>
-    <p>Those actual names aren't too important. In Dutch we often just call them <b><i>de&#8209;woorden</i></b> and <i><b>het&#8209;woorden</b>,</i> after the definite article they use. The indefinite article is always (unstressed) <i>een,</i> and is not used with&nbsp;plurals.</p>
+    <p>Those actual names aren't too important. In Dutch we often just call them <b><i>de&#8209;woorden</i></b> and <i><b>het&#8209;woorden</b>,</i> after the definite article they take. The indefinite article is always <i>een</i> (unstressed; irregularly pronounced like&nbsp;<i>on</i> in English <i>reckon</i>), and is not used with&nbsp;plurals.</p>
     <p>Most plurals are formed with either <i>&#8209;en</i> or <i>&#8209;s.</i> <b>Without exception, plurals always work like <i>de</i>&nbsp;words.</b></p>
 
     <table>
@@ -328,7 +294,7 @@ wordlist = {
 
     <h2><a href="">Diminutives</a></h2>
 
-    <p>Most nouns in Dutch can be turned into diminutives, typically ending in <i><b>&#8209;</i>(<i>t</i>&#x200a;)&NoBreak;<i>&NoBreak;&#x200a;&NoBreak;je</b>.</i> In the south and in female given names, <i>&#8209;ke</i> often occurs too. With the exception of given names, <b>diminutives are always&nbsp;neuter</b> and thus take the definite article <i>het</i> in the singular. The plurals of diminutives are always formed with&nbsp;<i>&#8209;s.</i></p>
+    <p>Most nouns in Dutch can be turned into diminutives, typically ending in <i><b>&#8209;</i>(<i>t</i>&#x200a;)<i>&NoBreak;&#x200a;&NoBreak;je</b>.</i> In the south and in female given names, <i>&#8209;ke</i> often occurs too. With the exception of given names, <b>diminutives are always&nbsp;neuter</b> and thus take the definite article <i>het</i> in the singular. The plurals of diminutives are always formed with&nbsp;<i>&#8209;s.</i></p>
 
     <table>
         <tr><th></th><th colspan=2>regular</th><th colspan=2>diminutive</th></tr>
@@ -350,6 +316,8 @@ wordlist = {
         <tr><td class="article">the</td><td>paper</td><td class="article">het</td><td>papier</td></tr>
         <tr><td class="article">the</td><td>toilet paper</td><td class="article"><b>het<br>het</b></td><td>wc-<b>papier</b><br>toilet<b>papier</b></td></tr>
     </table>
+
+    <p>Compound nouns generally keep the syllable stress on the first part. If the first part consists of multiple words (<i><b>éé</b>n&nbsp;persoon, één&nbsp;pers<b>oo</b>n; Albert&nbsp;H<b>eij</b>n</i>), the syllable stress also stays where it was (<i>het&nbsp;<b>ee</b>npersoonsbed/eenpers<b>oo</b>nsbed; de&nbsp;Albert&nbsp;H<b>eij</b>nmedewerker</i>).</p>
     <!--table>
         <tr><th></th><th colspan=2>base form</th><th colspan=2>diminutive</th></tr>
         <tr><th rowspan=2>singular</th><td>de</td><td>arm</td><td>het</td><td>armpje</td></tr>
