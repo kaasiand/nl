@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+
+
+
+@media screen and (orientation: portrait) {
+    html {
+        font-size: 20pt !important;
+    }
+    .translation {
+        .hideNarrow {
+            display: none !important;
+        }
+    }
+    #cont {
+        flex-direction: column !important;
+    }
+    #paragraphs {
+        flex: 50 !important;
+    }
+}
+
+@font-face {
+    font-family: "pretext";
+    src: url("Pretext-Regular.ttf");
+}
+@font-face {
+    font-family: "pretext";
+    font-weight: bold;
+    src: url("Pretext-Bold.ttf");
+}
+
+table {
+    font-size: 1.3rem;
+    border-collapse: collapse;
+    white-space: nowrap;
+}
+
+.translation {
+    width: 100%;
+    margin-top: 10px;
+
+    & th {
+        padding: 15px 10px 15px 0 !important;
+    }
+    & p.note { 
+        margin-top: -0.4rem;
+        font-size: 75%;
+    }
+    
+    & td,th {
+        vertical-align: center;
+        padding: 0 5px 0 0;
+        line-height: calc(1.5rem * 0.9);
+
+        & small {
+        display: inline-block;
+        font-size: 80%;
+        transform: scaleY(calc(1 / 0.8));
+        }
+
+        >div {
+            padding: 4px 0;
+            vertical-align: baseline;
+            &:has(.note) {
+                padding-bottom: 0;
+            }
+        }
+    }
+    & p { margin: 0; }
+
+    .maincol:not(.article) {
+        font-size: 130%;
+        & small {
+            font-size: 65%;
+            transform: none;
+        }
+        & p.note { 
+            font-size: 65%;
+        }
+    }
+    .maincol.article {
+        padding: 4px 5px 0 0;
+    }
+    :not(.maincol) + .maincol, .maincol + :not(.maincol), tr>:first-child {
+        padding-left: 7px;
+    }
+    .article {
+        font-size: 75%;
+        color: #0006;
+        text-align: right;
+        padding: 3px 4px 1px 0;
+    }
+    .section {
+        border-top: 12px solid transparent;
+        border-bottom: 10px solid transparent;
+        background-color: #ca56;
+    }
+    td.maincol {
+        background-color: #ca54; 
+        line-height: calc(2.0rem * 0.75);
+    }
+}
+html {
+    font-size: 12pt;
+    font-family: "pretext";
+}
+body {
+    margin: 0;
+}
+#cont {
+    margin: 0;
+    height: 100vh;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    >div {
+        overflow-y: auto;
+        flex: 60;
+        padding: 10px;
+    }
+    #paragraphs {
+        flex: 35;
+    }
+}
+
+#paragraphs {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    font-size: 1.5rem;
+    line-height: 1.25rem;
+    white-space: auto;
+    & h1 {
+        font-size: 2rem;
+    }
+    & h2 {
+        font-size: 1.8rem;
+    }
+    & h1,h2,h3,p {
+        margin: 20px 0;
+        letter-spacing: 0.25px;
+    }
+    & table {
+        min-width: 80%;
+        margin: 20px auto 25px;
+        line-height: 1.2rem;
+
+        & tr:first-child {
+            background-color: #ca56;
+        }
+        & th:first-child {
+            background-color: #ca54;
+            padding: 8px 15px 0px;
+        }
+        
+        & td {
+            text-align: left;
+            padding: 8px 3px 0px;
+        }
+        & th {
+            width: 1px;
+            padding: 7px 15px;
+        }
+        & tr:last-child>* {
+            padding-bottom: 8px;
+        }
+        
+        .article {
+            text-align: right;
+            width: 1px;
+            padding-left: 10px;
+        }
+    }
+}
+
+.red { color: #c00 }
+.blue { color: #04f }
+.green { color: #080 }
+
+s { opacity: 0.5; text-decoration: none; }
+.transp { opacity: 0.5 }
+i { margin-left: -1px; padding-right: 1px; }
+.hidden { display: none }
+
+nav.breadcrumbs {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    gap: 9px;
+    font-size: 1.5rem;
+    padding: 12px 10px 0px;
+
+    > div {
+        display: block;
+        &:not(:last-child)::after {
+            content: "→";
+            padding-left: 8px;
+            font-weight: normal;
+        }
+        &:first-child {
+            font-weight: bold;
+        }
+    }
+    #paragraphs & {
+        padding-left: 0;
+        padding-bottom: 5px;
+    }
+}
+* {
+    box-sizing: border-box;
+}
+
+.words {
+    margin: 10px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    flex-flow: row wrap;
+    gap: 5px;
+    font-size: 1.5rem;
+    .word {
+        display: flex;
+        flex-flow: column nowrap;
+        padding-bottom: 5px;
+        white-space: pre;
+        min-width: 20%;
+
+        & small {
+            font-size: 1.2rem;
+        }
+        
+        &.header {
+            min-width: 90%;
+            background-color: #ca56;
+            grid-column: 1 / -1;
+        }
+        
+        >div {
+            align-items: baseline;
+            justify-content: center;
+            padding: 1px 3px;
+            display: flex;
+            flex-flow: row nowrap;
+            &:first-child {
+                padding: 5px 10px;
+                background-color: #ca56;
+                .header & {
+                    background-color: #ca58;
+                }
+            }
+            >div {
+                padding: 4px;
+                font-size: 1.2rem;
+                display: flex;
+                justify-content: center;
+                align-self: center;
+            }
+        }
+    }
+
+}
+
+</style>
+<script src="format.js"></script>
+</head>
+<body onload="init()">
+<nav>
+</nav>
+
+<div id="cont">
+<div>
+
+<nav class="breadcrumbs">
+<div>Vocabulary</div>
+<div>Quantities</div>
+<div>Numerals</div>
+</nav>
+
+<div class="words">
+    <div class="word header">
+        <div><small>de</small> mens</div>
+        <div><div>mensen</div><div></div><div>mensje</div></div>
+        <div><small>o</small> ser humano; <small>a</small> pessoa</div>
+    </div>
+    <div class="word">
+        <div>m<b>e</b>nsen</div>
+        <div><div>mensjes</div></div>
+        <div>gente</div>
+    </div>
+    <div class="word">
+        <div><small>de</small> pers<b>oo</b>n</div>
+        <div><div>personen</div><div></div><div>persoontje</div></div>
+        <div><small>a</small> pessoa</div>
+    </div>
+    <div class="word">
+        <div><small>de</small> man</div>
+        <div><div>mannen</div><div></div><div>mannetje</div></div>
+        <div><small>o</small> homem</div>
+    </div>
+    <div class="word">
+        <div><small>de</small> vrouw</div>
+        <div><div>vrouwen</div><div></div><div>vrouwtje</div></div>
+        <div><small>a</small> mulher</div>
+    </div>
+    <div class="word">
+        <div><small>het</small> kind</div>
+        <div><div>kinderen</div><div></div><div>kindje<br>kindjes; kindertjes</div></div>
+        <div><small>a</small> criança</div>
+    </div>
+    <div class="word">
+        <div><small>de</small> j<b>o</b>ngen</div>
+        <div><div>jongens</div><div></div><div>jongetje</div></div>
+        <div><small>o</small> menino</div>
+    </div>
+    <div class="word">
+        <div><small>het</small> m<b>ei</b>sje</div>
+        <div><div>meisjes</div></div>
+        <div><small>a</small> menina</div>
+    </div>
+    <div class="word header">
+        <div><small>het</small> l<b>i</b>chaam</div>
+        <div><div>lichamen</div><div></div><div>lichaampje</div></div>
+        <div><small>o</small> corpo</div>
+    </div>
+</div>
+
+<table class="translation" id="table_numerals">
+    <tr>
+        <th class="pt hideNarrow"><abbr title="o numeral ordinal">ordinal</abbr></th>
+        <th class="pt maincol">português</th><th class="nl maincol">Nederlands</th>
+        <th class="nl"><abbr title="het rangtelwoord">ordinal</abbr><br><i>-en</i> form</th>
+    </tr>
+</table>
+<table class="translation" id="table_nouns">
+    <tr>
+        <th colspan=2 class="pt hideNarrow"><abbr title="o diminutivo">diminutive</abbr></th>
+        <th colspan=2 class="pt hideNarrow"><abbr title="o aumentativo">augmentative</abbr></th>
+        <th colspan=2 class="pt maincol">português</th><th colspan=2 class="nl maincol">Nederlands</th>
+        <th colspan=1 class="nl"><abbr title="het meervoud">plural</abbr> {T(de)}</th>
+        <th colspan=2 class="nl"><abbr title="het verkleinwoord">diminutive</abbr> {T(het)}</th>
+</table>
+</div>
+<div id="paragraphs">
+
+<nav class="breadcrumbs">
+<div>Grammar</div>
+<div>Nouns</div>
+<div>Introduction</div>
+</nav>
+
+    <h1>Introduction to Nouns</h1>
+    <p>Traditionally, Dutch has three grammatical genders: masculine, feminine and neuter. However, like in Swedish and Danish, the distinction between the masculine and feminine genders has largely disappeared in Dutch (except in the south). In practice, it's fine if you <b>treat Dutch as having only two grammatical genders: <i>common</i>&nbsp;(m&NoBreak;/&NoBreak;f)&nbsp;and&nbsp;<i>neuter.</i></b></p>
+    <p>Those actual names aren't too important. In Dutch we often just call them <b><i>de&#8209;woorden</i></b> and <i><b>het&#8209;woorden</b>,</i> after the definite article they take. The indefinite article is always <i>een</i> (unstressed; irregularly pronounced like&nbsp;<i>on</i> in English <i>reckon</i>), and is not used with&nbsp;plurals.</p>
+    <p>Most plurals are formed with either <i>&#8209;en</i> or <i>&#8209;s.</i> <b>Without exception, plurals always work like <i>de</i>&nbsp;words.</b></p>
+
+    <table>
+        <tr><th></th><th colspan=2>definite (the)</th><th colspan=2>indefinite (a/an)</th></tr>
+        <tr><th>singular</th><td class="article">de<br>het</td><td>arm<br>hart</td><td class="article">een<br>een</td><td>arm<br>hart</td></tr>
+        <tr><th>plural</th><td class="article">de<br>de</td><td>armen<br>harten</td><td class="article"></td><td>armen<br>harten</td></tr>
+    </table>
+
+    <p>A small number of words instead use <i>&#8209;eren</i> for plurals (<i>kinderen</i>, like English <i>children</i>), while many Latin-based words may use Latin endings (<i>museum</i>&nbsp;&rarr;&nbsp;<i>musea</i>, <i>politicus</i>&nbsp;&rarr;&nbsp;<i>politici</i>, <i>crisis</i>&nbsp;&rarr;&nbsp;<i>crises</i>&NoBreak;&#x200a;&NoBreak;).</p>
+
+    <h2><a href="">Diminutives</a></h2>
+
+    <p>Most nouns in Dutch can be turned into diminutives, typically ending in <i><b>&#8209;</i>(<i>t</i>&#x200a;)<i>&NoBreak;&#x200a;&NoBreak;je</b>.</i> In the south and in female given names, <i>&#8209;ke</i> often occurs too. With the exception of given names, <b>diminutives are always&nbsp;neuter</b> and thus take the definite article <i>het</i> in the singular. The plurals of diminutives are always formed with&nbsp;<i>&#8209;s.</i></p>
+
+    <table>
+        <tr><th></th><th colspan=2>regular</th><th colspan=2>diminutive</th></tr>
+        <tr><th>singular</th><td class="article">de</td><td>hand</td><td class="article">het</td><td>handje</td></tr>
+        <tr><th>plural</th><td class="article">de</td><td>handen</td><td class="article">de</td><td>handjes</td></tr>
+    </table>
+
+    <p>Some words may undergo a vowel change or lengthening in plural and/or diminutive forms (<i>schip</i>&nbsp;&rarr;&nbsp;<i>sch<span class="red">e</span>pen/&NoBreak;sch<span class="red">ee</span>pje;</i> <i>factor</i>&nbsp;&rarr;&nbsp;<i>fact<span class="red">o</span>ren</i>&NoBreak;&#x200a;&NoBreak;).</p>
+
+    <h2><a href="">Compounds</a></h2>
+
+    <p>Compound nouns are generally written as single words in Dutch, though you'll often see people write them separately (due to English influence; possibly also web searchability). <b>The&nbsp;grammatical gender of a compound is the same as that of its last&nbsp;part.</b></p>
+    <p>Unusual compounds may optionally be written with a hyphen in between, for legibility. A hyphen is required for compounds with initialisms (<i>wc-papier</i>), and for compounds which juxtapose vowels that might be misread as a different sound (<i>vanille-extract,</i> but&nbsp;<i>vanillearoma</i>).</p>
+
+    <table>
+        <tr><th style="display:none"></th><th colspan=2>English</th><th colspan=2>Dutch</th></tr>
+        <tr><td class="article">the</td><td>bottle</td><td class="article">de</td><td>fles</td></tr>
+        <tr><td class="article">the</td><td>water bottle</td><td class="article"><b>de</b></td><td>water<b>fles</b></td></tr>
+        <tr><td class="article">the</td><td>paper</td><td class="article">het</td><td>papier</td></tr>
+        <tr><td class="article">the</td><td>toilet paper</td><td class="article"><b>het<br>het</b></td><td>wc-<b>papier</b><br>toilet<b>papier</b></td></tr>
+    </table>
+
+    <p>Compound nouns generally keep the syllable stress on the first part. If the first part consists of multiple words (<i><b>éé</b>n&nbsp;persoon, één&nbsp;pers<b>oo</b>n; Albert&nbsp;H<b>eij</b>n</i>), the syllable stress also stays where it was (<i>het&nbsp;<b>ee</b>npersoonsbed/eenpers<b>oo</b>nsbed; de&nbsp;Albert&nbsp;H<b>eij</b>nmedewerker</i>).</p>
+    <!--table>
+        <tr><th></th><th colspan=2>base form</th><th colspan=2>diminutive</th></tr>
+        <tr><th rowspan=2>singular</th><td>de</td><td>arm</td><td>het</td><td>armpje</td></tr>
+        <tr><td>het</td><td>hart</td><td>het</td><td>hartje</td></tr>
+        <tr><th rowspan=2>plural</th><td>de</td><td>armen</td><td>de</td><td>armpjes</td></tr>
+        <tr><td>de</td><td>harten</td><td>de</td><td>hartjes</td></tr>
+    </table-->
+</div>
+</div>
+</body>
+</html>
